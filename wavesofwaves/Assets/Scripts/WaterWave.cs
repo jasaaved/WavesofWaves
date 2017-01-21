@@ -38,7 +38,9 @@ public class WaterWave : MonoBehaviour {
     {
         if(other.tag == "Enemy")
         {
-            //Insert code to slow enemy here.
+            EnemyMovement enemy = other.GetComponent<EnemyMovement>();
+            enemy.slowed = true;
+            enemy.ccTimer = 2f;
         }
     }
 
