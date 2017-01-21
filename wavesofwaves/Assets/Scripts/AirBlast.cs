@@ -10,7 +10,7 @@ public class AirBlast : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find("Cube");
         trajectory = player.transform.forward;
         m_Rigidbody = GetComponent<Rigidbody>();
     }
@@ -26,7 +26,16 @@ public class AirBlast : MonoBehaviour
         {
             Rigidbody enemy = other.GetComponent<Rigidbody>();
             enemy.AddForce(new Vector3(0, 2, 5) * 1000);
+            Destroy(this.gameObject);
         }
+        else if(other.tag != "Player")
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+    private void OnBecameInvisible()
+    {
         Destroy(this.gameObject);
     }
 }
