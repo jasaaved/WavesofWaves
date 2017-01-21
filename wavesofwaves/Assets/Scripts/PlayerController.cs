@@ -11,6 +11,8 @@ public class PlayerController : MonoBehaviour
     Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
     int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
     float camRayLength = 100f;          // The length of the ray from the camera into the scene.
+    public GameObject Airblast;
+    private float attackTimer;
 
     void Awake()
     {
@@ -19,6 +21,12 @@ public class PlayerController : MonoBehaviour
 
         // Set up references.
         playerRigidbody = GetComponent<Rigidbody>();
+    }
+
+    private void Start()
+    {
+        attackTimer = 0;
+        Airblast = Resources.Load<GameObject>("Prefabs/AirBlast");
     }
 
 
@@ -34,6 +42,16 @@ public class PlayerController : MonoBehaviour
         // Turn the player to face the mouse cursor.
         Turning();
 
+    }
+
+    private void Update()
+    {
+        if (attackTimer <= 0 && Input.GetButtonDown("Fire1"))
+        {
+            AirBlast();
+            attackTimer = 1f;
+        }
+        attackTimer -= Time.deltaTime;
     }
 
     void Move(float h, float v)
@@ -71,5 +89,10 @@ public class PlayerController : MonoBehaviour
             // Set the player's rotation to this new rotation.
             playerRigidbody.MoveRotation(newRotation);
         }
+    }
+
+    void AirBlast()
+    {
+        GameObject.Instantiate(Airblast, transform.position, transform.rotation);
     }
 }
