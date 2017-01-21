@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
 
     // Components
     public Transform player;
+    public List<EnemyHealth> enemies = new List<EnemyHealth>();
 
     // UI
     public GameObject gameoverMenu;
@@ -87,12 +88,33 @@ public class GameManager : MonoBehaviour
 
     public void CheckEnemies()
     {
+        if (enemies.Count == 0)
+        {
+            LevelCompleted();
+        }
+    }
 
+    public void LevelCompleted()
+    {
+        DisplayText("Level Completed! Get ready for the next wave!");
+        StartCoroutine("StartCountdown");
+    }
+
+    public IEnumerator StartCountdown()
+    {
+        yield return new WaitForSeconds(5);
+        IncrementLevel();
     }
  
     public void IncrementLevel()
     {
+        currentLevel++;
+        EnemySpawner[] spawners = FindObjectsOfType<EnemySpawner>();
 
+        foreach (EnemySpawner spawner in spawners)
+        {
+            spawner.ResetSpawnCount();
+        }
     }
 
     public void DisplayText(string text)

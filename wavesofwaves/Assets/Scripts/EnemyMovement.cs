@@ -12,12 +12,16 @@ public class EnemyMovement : MonoBehaviour
         // Set up the references.
         player = GameObject.FindGameObjectWithTag ("Player").transform;
         nav = GetComponent <NavMeshAgent> ();
+
     }
 
 
     void Update ()
     {
         // TODO: Check for isAlive and disable if dead
-        nav.SetDestination (player.position);
+        if (!GameManager.Instance.enemiesDisabled)
+        {
+            nav.SetDestination(player.position);
+        }
     } 
 }
