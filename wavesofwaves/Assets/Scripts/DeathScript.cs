@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class DeathScript : MonoBehaviour {
 
+    /// <summary>
+    /// This is a general death script that's used with hazards. 
+    /// </summary>
+    
 	// Use this for initialization
 	void Start () {
 		
@@ -16,7 +20,11 @@ public class DeathScript : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Player"))
+        // If whatever's colliding with the hazard has a tag of "Player" or
+        // "Enemy", it kills/destroys that thing.
+
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.
+            CompareTag("Enemy"))
         {
             Destroy(collision.gameObject);
         }

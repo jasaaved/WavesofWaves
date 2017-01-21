@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour
     public GameObject Airblast;
     public GameObject Waterwave;
     private float airTimer;
-    private float waterTimer;
+    [HideInInspector]
+    public float waterTimer;
 
     void Awake()
     {
@@ -44,7 +45,7 @@ public class PlayerController : MonoBehaviour
         Move(h, v);
 
         // Turn the player to face the mouse cursor.
-        if (waterTimer > 0)
+        if (waterTimer <= 0)
         {
             Turning();
         }
