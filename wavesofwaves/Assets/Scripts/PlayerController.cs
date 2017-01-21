@@ -15,9 +15,12 @@ public class PlayerController : MonoBehaviour
     float camRayLength = 100f;          // The length of the ray from the camera into the scene.
     public GameObject Airblast;
     public GameObject Waterwave;
+    public GameObject Lightwave;
+
     private float airTimer;
     [HideInInspector]
     public float waterTimer;
+    private float lightTimer;
 
     void Awake()
     {
@@ -32,8 +35,7 @@ public class PlayerController : MonoBehaviour
     {
         airTimer = 0;
         waterTimer = 0;
-        Airblast = Resources.Load<GameObject>("Prefabs/AirBlast");
-        Waterwave = Resources.Load<GameObject>("Prefabs/WaterWave");
+        lightTimer = 0;
     }
 
 
@@ -64,6 +66,22 @@ public class PlayerController : MonoBehaviour
             airTimer -= Time.deltaTime;
             waterTimer -= Time.deltaTime;
         }
+
+
+        if (waterTimer <= 0 && Input.GetButtonDown("Fire2"))
+        {
+            WaterWave();
+            waterTimer = waterCooldown;
+        }
+
+        if (lightTimer <= 0 && Input.GetButtonDown("Fire3"))
+        {
+            LightWave();
+            lightTimer = 3f;
+        }
+        airTimer -= Time.deltaTime;
+        waterTimer -= Time.deltaTime;
+        lightTimer -= Time.deltaTime;
     }
 
     void Move(float h, float v)
@@ -111,5 +129,10 @@ public class PlayerController : MonoBehaviour
     void WaterWave()
     {
         GameObject.Instantiate(Waterwave);
+    }
+
+    void LightWave()
+    {
+        GameObject.Instantiate(Lightwave, transform.position + transform.forward * 5, transform.rotation);
     }
 }
