@@ -25,8 +25,8 @@ public class WaterWave : MonoBehaviour {
         //Get the degrees to set
         currentRotation += Time.deltaTime * 360;
         //Change the Euler Angles of the Quaternions
-        playerRotation.eulerAngles = new Vector3(0, currentRotation, 0);
-        rotation.eulerAngles = new Vector3(0, currentRotation, 0);
+        playerRotation.eulerAngles = initialRotation.eulerAngles + new Vector3(0, currentRotation, 0);
+        rotation.eulerAngles = initialRotation.eulerAngles + new Vector3(0, currentRotation, 0);
         //Set position
         transform.position = player.transform.position + (player.transform.forward * 12);
         //Set the rotation of player and water.
