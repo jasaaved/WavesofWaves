@@ -37,7 +37,8 @@ public class ExplosionScript : MonoBehaviour {
         // Whatever's attached to this script explodes upon colliding with a game
         // object, and destroys both the parent and the parameter "coll." 
        
-        if (coll.gameObject.CompareTag("Player"))
+        if (coll.gameObject.CompareTag("Player") || coll.gameObject.
+            CompareTag("Enemy"))
         {
             Explode();
             Destroy(coll.gameObject);

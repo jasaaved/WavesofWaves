@@ -20,12 +20,16 @@ public class DeathScript : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        // If whatever's colliding with the hazard has a tag of "Player", it 
-        // kills/destroys that thing.
+        // If whatever's colliding with the hazard has a tag of "Player" or
+        // "Enemy", it kills/destroys that thing.
 
-        if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player")) 
         {
             Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<EnemyHealth>().Death();
         }
     }
 }
