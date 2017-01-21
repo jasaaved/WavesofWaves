@@ -16,12 +16,14 @@ public class GameManager : MonoBehaviour
         SHOP,    //Once, on start of each player's turn
         GAMEOVER,
     };
+    // Testing
+    public bool isUsingMouse;
+    public bool enemiesDisabled;
+    public bool musicDisabled;
 
     // Game state
     public StateType currentState;
     public bool isGameOver;
-    public bool enemiesDisabled;
-    public bool musicDisabled;
 
     // Level
     public int score;
@@ -48,7 +50,6 @@ public class GameManager : MonoBehaviour
     public void Start()
     {
         currentState = StateType.PLAYING;
-        Time.timeScale = 1;
         isGameOver = false;
         DisplayText("Start!");
     }

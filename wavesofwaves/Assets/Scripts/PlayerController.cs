@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour
     public GameObject Airblast;
     public GameObject Waterwave;
     private float airTimer;
-    private float waterTimer;
+    [HideInInspector]
+    public float waterTimer;
 
     void Awake()
     {
@@ -36,17 +37,10 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        // Store the input axes.
-        float h = Input.GetAxisRaw("xMoveKey");
-        float v = Input.GetAxisRaw("yMoveKey");
-
-        // Move the player around the scene.
-        Move(h, v);
-
         // Turn the player to face the mouse cursor.
-        if (waterTimer <= 0)
+        if (GameManager.Instance.isUsingMouse && waterTimer <= 0)
         {
-            Turning();
+            //Turning();
         }
     }
 
