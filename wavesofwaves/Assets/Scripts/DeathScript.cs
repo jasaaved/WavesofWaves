@@ -23,10 +23,13 @@ public class DeathScript : MonoBehaviour {
         // If whatever's colliding with the hazard has a tag of "Player" or
         // "Enemy", it kills/destroys that thing.
 
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.
-            CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Player")) 
         {
             Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.CompareTag("Enemy"))
+        {
+            collision.gameObject.GetComponent<EnemyHealth>().Death();
         }
     }
 }

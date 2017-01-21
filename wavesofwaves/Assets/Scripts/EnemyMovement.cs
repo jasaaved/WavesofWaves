@@ -27,16 +27,19 @@ public class EnemyMovement : MonoBehaviour
     void Update ()
     {
         // TODO: Check for isAlive and disable if dead
-        nav.SetDestination (player.position);
-        if(ccTimer > 0 && slowed && !stunned)
+        if (!GameManager.Instance.enemiesDisabled)
         {
-            ccTimer -= Time.deltaTime;
-            nav.speed = 1.5f;
-        }
-        else if(ccTimer > 0 && stunned)
-        {
-            ccTimer -= Time.deltaTime;
-            nav.speed = 0f;
+            nav.SetDestination(player.position);
+            if (ccTimer > 0 && slowed && !stunned)
+            {
+                ccTimer -= Time.deltaTime;
+                nav.speed = 1.5f;
+            }
+            else if (ccTimer > 0 && stunned)
+            {
+                ccTimer -= Time.deltaTime;
+                nav.speed = 0f;
+            }
         }
     } 
 }

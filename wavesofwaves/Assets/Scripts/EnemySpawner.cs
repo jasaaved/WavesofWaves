@@ -7,6 +7,7 @@ public class EnemySpawner : MonoBehaviour
     public GameObject[] enemyList;
     private float spawnTimer;
     private float difficultyTimer;
+    private int spawnCount;
     public float maxSpawnTime;
     public float minSpawnTime;
     public int maxPackSize;
@@ -20,15 +21,15 @@ public class EnemySpawner : MonoBehaviour
     {
         spawnTimer = Random.Range(minSpawnTime, maxSpawnTime);
         difficultyTimer = 0;
+        spawnCount = 0;
     }
 
     // Update is called once per frame
     void Update()
     {
         spawnTimer -= Time.deltaTime;
-        difficultyTimer += Time.deltaTime;
 
-        if (spawnTimer <= 0)
+        if (spawnTimer <= 0 && spawnCount < (GameManager.Instance.currentLevel * 2))
         {
             for (int i = 0; i <= (int)Random.Range(minPackSize, maxPackSize); i++)
             {
@@ -36,15 +37,15 @@ public class EnemySpawner : MonoBehaviour
                 Instantiate(enemy, new Vector3(transform.position.x + Random.Range(-2, 2), transform.position.y + 1, transform.position.z + Random.Range(-2, 2)), Quaternion.identity);
                 spawnTimer = Random.Range(minSpawnTime, maxSpawnTime);
             }
+            spawnCount++;
         }
     }
 
     void IncrementDifficulty()
     {
-        difficultyLevel++;
         currentRotation++;
 
-        if(difficultyLevel % 1 == 0)
+        if(GameManager.Instance.currentLevel % 1 == 0)
         {
             maxPackSize++;
         }
@@ -52,5 +53,11 @@ public class EnemySpawner : MonoBehaviour
         {
             minPackSize++;
         }
+    }
+
+    public void ResetSpawnCount()
+    {
+        spawnCount = 0;
+        spawnTimer = Random.Range(minSpawnTime, maxSpawnTime);
     }
 }
