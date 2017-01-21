@@ -4,12 +4,14 @@ using UnityEngine;
 public class JoystickController : MonoBehaviour
 {
     public float speed = 10f;            // The speed that the player will move at.
+    public float airCooldown = 1f;
 
     Vector3 movement;                   // The vector to store the direction of the player's movement.
     Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
     public int floorMask;
     float camRayLength = 100f;
     private float attackTimer;
+    private float airTimer;
     public float xVelAdj;
     public float yVelAdj;
     private float xFire;
@@ -27,6 +29,7 @@ public class JoystickController : MonoBehaviour
     private void Start()
     {
         attackTimer = 0;
+        airTimer = 0;
         playerController = GetComponent<PlayerController>();
     }
 
@@ -84,12 +87,13 @@ public class JoystickController : MonoBehaviour
 
     private void Update()
     {
-        if ((Mathf.Abs(xFire) > 0.2 || Mathf.Abs(yFire) > 0.2) && attackTimer <= 0)
+
+        if ((Mathf.Abs(xFire) > 0.2 || Mathf.Abs(yFire) > 0.2) && airTimer <= 0)
         {
             AirBlast();
-            attackTimer = 1f;
+            airTimer = airCooldown;
         }
-        attackTimer -= Time.deltaTime;
+        airTimer -= Time.deltaTime;
     }
 
     void Move(float h, float v, float xs, float ys)
@@ -105,7 +109,7 @@ public class JoystickController : MonoBehaviour
         // Move the player to it's current position plus the movement.
         playerRigidbody.MovePosition(transform.position + movement);
         */
-        Debug.Log(h);
+
         playerRigidbody.velocity = new Vector3(speed * h, 0, speed * v);
         if (playerController.waterTimer <= 0)
         {

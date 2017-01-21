@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     public float speed = 6f;            // The speed that the player will move at.
+    public float waterCooldown = 1f;
+    public float airCooldown = 1f;
 
     Vector3 movement;                   // The vector to store the direction of the player's movement.
     Animator anim;                      // Reference to the animator component.
@@ -51,13 +53,13 @@ public class PlayerController : MonoBehaviour
             if (airTimer <= 0 && Input.GetButtonDown("Fire1"))
             {
                 AirBlast();
-                airTimer = 1f;
+                airTimer = airCooldown;
             }
 
             if (waterTimer <= 0 && Input.GetButtonDown("Fire2"))
             {
                 WaterWave();
-                waterTimer = 1f;
+                waterTimer = waterCooldown;
             }
             airTimer -= Time.deltaTime;
             waterTimer -= Time.deltaTime;

@@ -6,6 +6,7 @@ public class EnemyMovement : MonoBehaviour
 {
     private Transform player;               // Reference to the player's position.
     private NavMeshAgent nav;               // Reference to the nav mesh agent.
+    private float maxSpeed;
     [HideInInspector]
     public bool slowed;
     [HideInInspector]
@@ -18,6 +19,7 @@ public class EnemyMovement : MonoBehaviour
         // Set up the references.
         player = GameObject.FindGameObjectWithTag ("Player").transform;
         nav = GetComponent <NavMeshAgent> ();
+        maxSpeed = nav.speed;
         ccTimer = 0;
         slowed = false;
         stunned = false;
@@ -39,6 +41,12 @@ public class EnemyMovement : MonoBehaviour
             {
                 ccTimer -= Time.deltaTime;
                 nav.speed = 0f;
+                nav.enabled = false;
+            }
+            else if (ccTimer <= 0)
+            {
+                nav.enabled = true;
+                nav.speed = maxSpeed;
             }
         }
     } 

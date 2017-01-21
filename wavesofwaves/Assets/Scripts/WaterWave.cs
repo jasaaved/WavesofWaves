@@ -36,12 +36,12 @@ public class WaterWave : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Enemy")
-        {
-            EnemyMovement enemy = other.GetComponent<EnemyMovement>();
-            enemy.slowed = true;
-            enemy.ccTimer = 2f;
-        }
+        //if(other.tag == "Enemy")
+        //{
+        //    EnemyMovement enemy = other.GetComponent<EnemyMovement>();
+        //    enemy.slowed = true;
+        //    enemy.ccTimer = 2f;
+        //}
     }
 
 

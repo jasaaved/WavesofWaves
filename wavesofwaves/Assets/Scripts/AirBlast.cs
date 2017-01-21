@@ -30,14 +30,14 @@ public class AirBlast : MonoBehaviour
         m_Rigidbody.velocity = trajectory * speed;
 
         // Enemy is 'stunned' while force is applied
-        if (currStunTime > 0)
-        {
-            currStunTime -= Time.deltaTime;
-        }
-        else if (enemy != null)
-        {
-            enemy.GetComponent<NavMeshAgent>().enabled = true;
-        }
+        //if (currStunTime > 0)
+        //{
+        //    currStunTime -= Time.deltaTime;
+        //}
+        //else if (enemy != null)
+        //{
+        //    enemy.GetComponent<NavMeshAgent>().enabled = true;
+        //}
     }
 
     private void OnTriggerEnter(Collider other)
@@ -45,7 +45,8 @@ public class AirBlast : MonoBehaviour
         if (other.tag == "Enemy")
         {
             enemy = other.gameObject;
-            enemy.GetComponent<NavMeshAgent>().enabled = false;
+            enemy.GetComponent<EnemyMovement>().stunned = true;
+            enemy.GetComponent<EnemyMovement>().ccTimer = maxStunTime;
             enemy.GetComponent<Rigidbody>().AddForce(trajectory * force);
             currStunTime = maxStunTime;
         }
