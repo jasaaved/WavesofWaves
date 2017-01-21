@@ -14,7 +14,8 @@ public class PlayerController : MonoBehaviour
     public GameObject Airblast;
     public GameObject Waterwave;
     private float airTimer;
-    private float waterTimer;
+    [HideInInspector]
+    public float waterTimer;
 
     void Awake()
     {

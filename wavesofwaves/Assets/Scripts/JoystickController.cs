@@ -13,6 +13,7 @@ public class JoystickController : MonoBehaviour
     private float xFire;
     private float yFire;
     public GameObject Airblast;
+    private PlayerController playerController;
 
     void Awake()
     {
@@ -23,6 +24,7 @@ public class JoystickController : MonoBehaviour
     private void Start()
     {
         attackTimer = 0;
+        playerController = GetComponent<PlayerController>();
     }
 
 
@@ -30,8 +32,11 @@ public class JoystickController : MonoBehaviour
     {
         xVelAdj = Input.GetAxis("xMove");
         yVelAdj = Input.GetAxis("yMove");
-        xFire = Input.GetAxis("xShoot");
-        yFire = Input.GetAxis("yShoot");
+        if (playerController.waterTimer <= 0)
+        {
+            xFire = Input.GetAxis("xShoot");
+            yFire = Input.GetAxis("yShoot");
+        }
         Move(xVelAdj, yVelAdj, xFire, yFire);
     }
 
@@ -59,8 +64,11 @@ public class JoystickController : MonoBehaviour
         playerRigidbody.MovePosition(transform.position + movement);
         */
         playerRigidbody.velocity = new Vector3(speed * h, 0, speed * v);
-        float heading = Mathf.Atan2(xs, ys);
-        transform.rotation = Quaternion.EulerAngles(0, heading, 0);
+        if (playerController.waterTimer <= 0)
+        {
+            float heading = Mathf.Atan2(xs, ys);
+            transform.rotation = Quaternion.EulerAngles(0, heading, 0);
+        }
     }
 
     void AirBlast()
