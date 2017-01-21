@@ -10,7 +10,7 @@ public class AirBlast : MonoBehaviour
 
     private void Start()
     {
-        player = GameObject.Find("Cube");
+        player = GameObject.FindGameObjectWithTag("Player");
         trajectory = player.transform.forward;
         m_Rigidbody = GetComponent<Rigidbody>();
         Debug.Log(trajectory);
