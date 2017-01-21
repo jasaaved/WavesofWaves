@@ -16,8 +16,9 @@ public class AirBlast : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         trajectory = player.transform.forward;
         m_Rigidbody = GetComponent<Rigidbody>();
+        
+        // Re-align object
         transform.Rotate(new Vector3(0, 270, 0));
-        transform.Translate(new Vector3(trajectory.x + 1, trajectory.y, trajectory.z - 1));
     }
 
     private void Update()
@@ -31,12 +32,7 @@ public class AirBlast : MonoBehaviour
         {
             Rigidbody enemy = other.GetComponent<Rigidbody>();
             enemy.AddForce(trajectory * force);
-            //Destroy(this.gameObject);
         }
-        //if (other.tag == "Obstacle")
-        //{
-        //    Destroy(this.gameObject);
-        //}
     }
 
     private void OnBecameInvisible()
