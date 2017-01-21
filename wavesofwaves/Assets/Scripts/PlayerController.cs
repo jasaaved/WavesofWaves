@@ -50,11 +50,23 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (airTimer <= 0 && Input.GetButtonDown("Fire1"))
+        if (!GameManager.Instance.isGameOver)
         {
-            AirBlast();
-            airTimer = airCooldown;
+            if (airTimer <= 0 && Input.GetButtonDown("Fire1"))
+            {
+                AirBlast();
+                airTimer = airCooldown;
+            }
+
+            if (waterTimer <= 0 && Input.GetButtonDown("Fire2"))
+            {
+                WaterWave();
+                waterTimer = waterCooldown;
+            }
+            airTimer -= Time.deltaTime;
+            waterTimer -= Time.deltaTime;
         }
+
 
         if (waterTimer <= 0 && Input.GetButtonDown("Fire2"))
         {
