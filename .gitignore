@@ -18,13 +18,8 @@ ExportedObj/
 *.booproj
 *.svd
 
-
 # Unity3D generated meta files
 *.pidb.meta
-!*.*.meta
-
-wavesofwaves/Library/metadata/
-wavesofwaves/Temp/
 
 # Unity3D Generated File On Crash Reports
 sysinfo.txt
