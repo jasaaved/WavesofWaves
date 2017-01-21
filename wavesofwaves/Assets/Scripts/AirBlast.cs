@@ -6,10 +6,12 @@ public class AirBlast : MonoBehaviour
 {
     private Vector3 trajectory;
     private Rigidbody m_Rigidbody;
+    private GameObject player;
 
     private void Start()
     {
-        trajectory = new Vector3(0,0,1);
+        player = GameObject.Find("Player");
+        trajectory = player.transform.forward;
         m_Rigidbody = GetComponent<Rigidbody>();
     }
 
