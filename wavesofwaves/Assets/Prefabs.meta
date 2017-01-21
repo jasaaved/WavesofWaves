@@ -1,7 +1,13 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:wavesofwaves/Assets/Prefabs.meta
 guid: e8d7f714c78d4d342b5d2d5b50ce1c45
 folderAsset: yes
 timeCreated: 1484967665
+=======
+guid: 7c6908ff471e9434f88e46d9edcd6530
+folderAsset: yes
+timeCreated: 1484975981
+>>>>>>> ed17cc732ff4d57d6e9c46d83c69a52cab6710c1:wavesofwaves/Assets/Resources/Prefabs.meta
 licenseType: Free
 DefaultImporter:
   userData: 
