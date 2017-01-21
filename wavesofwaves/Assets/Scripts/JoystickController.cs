@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class JoystickController : MonoBehaviour
 {
-    public float speed = 6f;            // The speed that the player will move at.
+    public float speed = 10f;            // The speed that the player will move at.
 
     Vector3 movement;                   // The vector to store the direction of the player's movement.
     Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
@@ -58,7 +58,7 @@ public class JoystickController : MonoBehaviour
         // Move the player to it's current position plus the movement.
         playerRigidbody.MovePosition(transform.position + movement);
         */
-        playerRigidbody.velocity = new Vector3(3 * h, 0, 3 * v);
+        playerRigidbody.velocity = new Vector3(speed * h, 0, speed * v);
         float heading = Mathf.Atan2(xs, ys);
         transform.rotation = Quaternion.EulerAngles(0, heading, 0);
     }
