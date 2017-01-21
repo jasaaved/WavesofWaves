@@ -28,7 +28,7 @@ public class WaterWave : MonoBehaviour {
         playerRotation.eulerAngles = new Vector3(0, currentRotation, 0);
         rotation.eulerAngles = new Vector3(0, currentRotation, 0);
         //Set position
-        transform.position = player.transform.position + player.transform.forward * 2;
+        transform.position = player.transform.position + (player.transform.forward * 12);
         //Set the rotation of player and water.
         player.transform.rotation = playerRotation;
         transform.rotation = rotation;

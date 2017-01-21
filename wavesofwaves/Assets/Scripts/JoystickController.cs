@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 public class JoystickController : MonoBehaviour
 {
-    public float speed = 6f;            // The speed that the player will move at.
+    public float speed = 10f;            // The speed that the player will move at.
 
     Vector3 movement;                   // The vector to store the direction of the player's movement.
     Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
