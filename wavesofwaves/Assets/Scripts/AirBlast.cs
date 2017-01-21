@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class AirBlast : MonoBehaviour
 {
+    public float speed = 10f;
+    public float force = 1000f;
+
     private Vector3 trajectory;
     private Rigidbody m_Rigidbody;
     private GameObject player;
@@ -13,12 +16,14 @@ public class AirBlast : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         trajectory = player.transform.forward;
         m_Rigidbody = GetComponent<Rigidbody>();
-        Debug.Log(trajectory);
+        
+        // Re-align object
+        transform.Rotate(new Vector3(0, 270, 0));
     }
 
     private void Update()
     {
-        m_Rigidbody.velocity = trajectory * 10;
+        m_Rigidbody.velocity = trajectory * speed;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -26,12 +31,7 @@ public class AirBlast : MonoBehaviour
         if (other.tag == "Enemy")
         {
             Rigidbody enemy = other.GetComponent<Rigidbody>();
-            enemy.AddForce(new Vector3(0, 2, 5) * 1000);
-            Destroy(this.gameObject);
-        }
-        else if(other.tag != "Player")
-        {
-            Destroy(this.gameObject);
+            enemy.AddForce(trajectory * force);
         }
     }
 

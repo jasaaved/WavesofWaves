@@ -4,7 +4,66 @@ timeCreated: 1484980707
 licenseType: Free
 ModelImporter:
   serializedVersion: 19
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    100000: Armature
+    100002: Body_Back
+    100004: Body_Front
+    100006: Butt
+    100008: //RootNode
+    100010: Foot_LB
+    100012: Foot_LF
+    100014: Foot_RB
+    100016: Foot_RF
+    100018: Head
+    100020: Hip__RB
+    100022: Hip_LB
+    100024: Hip_LF
+    100026: Hip_RF
+    100028: Left_Ear_Bone
+    100030: Left_Ear_Root
+    100032: Leg_LB
+    100034: Leg_LF
+    100036: Leg_RB
+    100038: Leg_RF
+    100040: Low_Poly_Elephant
+    100042: Right_Ear_Bone
+    100044: Right_Ear_Root
+    100046: Trunk_Bone_1
+    100048: Trunk_Bone_2
+    100050: Trunk_Bone_3
+    100052: Trunk_Bone_4
+    400000: Armature
+    400002: Body_Back
+    400004: Body_Front
+    400006: Butt
+    400008: //RootNode
+    400010: Foot_LB
+    400012: Foot_LF
+    400014: Foot_RB
+    400016: Foot_RF
+    400018: Head
+    400020: Hip__RB
+    400022: Hip_LB
+    400024: Hip_LF
+    400026: Hip_RF
+    400028: Left_Ear_Bone
+    400030: Left_Ear_Root
+    400032: Leg_LB
+    400034: Leg_LF
+    400036: Leg_RB
+    400038: Leg_RF
+    400040: Low_Poly_Elephant
+    400042: Right_Ear_Bone
+    400044: Right_Ear_Root
+    400046: Trunk_Bone_1
+    400048: Trunk_Bone_2
+    400050: Trunk_Bone_3
+    400052: Trunk_Bone_4
+    4300000: Low_Poly_Elephant
+    7400000: Default Take
+    7400002: ArmatureAction
+    9500000: //RootNode
+    13700000: Low_Poly_Elephant
   materials:
     importMaterials: 1
     materialName: 0
