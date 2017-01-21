@@ -25,7 +25,7 @@ public class DeathScript : MonoBehaviour {
 
         if (collision.gameObject.CompareTag("Player")) 
         {
-            Destroy(collision.gameObject);
+            collision.gameObject.GetComponent<PlayerHealth>().Death();
         }
         else if (collision.gameObject.CompareTag("Enemy"))
         {

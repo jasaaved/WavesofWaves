@@ -33,24 +33,28 @@ public class JoystickController : MonoBehaviour
 
     void FixedUpdate()
     {
-        xVelAdj = Input.GetAxis("xMove");
-        yVelAdj = Input.GetAxis("yMove");
+        if (!GameManager.Instance.isGameOver)
+        {
+            xVelAdj = Input.GetAxis("xMove");
+            yVelAdj = Input.GetAxis("yMove");
 
-        if(Input.GetAxisRaw("xMoveKey") != 0 || Input.GetAxisRaw("yMoveKey") != 0)
-        {
-            xVelAdj = Input.GetAxisRaw("xMoveKey");
-            yVelAdj = Input.GetAxisRaw("yMoveKey");
-        }
-        if (!GameManager.Instance.isUsingMouse && playerController.waterTimer <= 0)
-        {
-            xFire = Input.GetAxis("xShoot");
-            yFire = Input.GetAxis("yShoot");
-        }else
-        {
-            Turning();
-        }
+            if (Input.GetAxisRaw("xMoveKey") != 0 || Input.GetAxisRaw("yMoveKey") != 0)
+            {
+                xVelAdj = Input.GetAxisRaw("xMoveKey");
+                yVelAdj = Input.GetAxisRaw("yMoveKey");
+            }
+            if (!GameManager.Instance.isUsingMouse && playerController.waterTimer <= 0)
+            {
+                xFire = Input.GetAxis("xShoot");
+                yFire = Input.GetAxis("yShoot");
+            }
+            else
+            {
+                Turning();
+            }
 
-        Move(xVelAdj, yVelAdj, xFire, yFire);
+            Move(xVelAdj, yVelAdj, xFire, yFire);
+        }
     }
 
     void Turning()

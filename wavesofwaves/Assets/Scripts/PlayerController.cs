@@ -46,19 +46,22 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (airTimer <= 0 && Input.GetButtonDown("Fire1"))
+        if (!GameManager.Instance.isGameOver)
         {
-            AirBlast();
-            airTimer = 1f;
-        }
+            if (airTimer <= 0 && Input.GetButtonDown("Fire1"))
+            {
+                AirBlast();
+                airTimer = 1f;
+            }
 
-        if (waterTimer <= 0 && Input.GetButtonDown("Fire2"))
-        {
-            WaterWave();
-            waterTimer = 1f;
+            if (waterTimer <= 0 && Input.GetButtonDown("Fire2"))
+            {
+                WaterWave();
+                waterTimer = 1f;
+            }
+            airTimer -= Time.deltaTime;
+            waterTimer -= Time.deltaTime;
         }
-        airTimer -= Time.deltaTime;
-        waterTimer -= Time.deltaTime;
     }
 
     void Move(float h, float v)
