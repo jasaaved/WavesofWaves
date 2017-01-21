@@ -12,7 +12,9 @@ public class PlayerController : MonoBehaviour
     int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
     float camRayLength = 100f;          // The length of the ray from the camera into the scene.
     public GameObject Airblast;
-    private float attackTimer;
+    public GameObject Waterwave;
+    private float airTimer;
+    private float waterTimer;
 
     void Awake()
     {
@@ -25,8 +27,10 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
-        attackTimer = 0;
+        airTimer = 0;
+        waterTimer = 0;
         Airblast = Resources.Load<GameObject>("Prefabs/AirBlast");
+        Waterwave = Resources.Load<GameObject>("Prefabs/WaterWave");
     }
 
 
@@ -40,18 +44,27 @@ public class PlayerController : MonoBehaviour
         Move(h, v);
 
         // Turn the player to face the mouse cursor.
-        Turning();
-
+        if (waterTimer > 0)
+        {
+            Turning();
+        }
     }
 
     private void Update()
     {
-        if (attackTimer <= 0 && Input.GetButtonDown("Fire1"))
+        if (airTimer <= 0 && Input.GetButtonDown("Fire1"))
         {
             AirBlast();
-            attackTimer = 1f;
+            airTimer = 1f;
         }
-        attackTimer -= Time.deltaTime;
+
+        if (waterTimer <= 0 && Input.GetButtonDown("Fire2"))
+        {
+            WaterWave();
+            waterTimer = 1f;
+        }
+        airTimer -= Time.deltaTime;
+        waterTimer -= Time.deltaTime;
     }
 
     void Move(float h, float v)
@@ -94,5 +107,10 @@ public class PlayerController : MonoBehaviour
     void AirBlast()
     {
         GameObject.Instantiate(Airblast, transform.position, transform.rotation);
+    }
+
+    void WaterWave()
+    {
+        GameObject.Instantiate(Waterwave);
     }
 }
