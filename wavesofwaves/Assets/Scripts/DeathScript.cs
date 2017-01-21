@@ -16,7 +16,7 @@ public class DeathScript : MonoBehaviour {
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.name == "Test")
+        if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(collision.gameObject);
         }

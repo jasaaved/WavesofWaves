@@ -13,11 +13,12 @@ public class AirBlast : MonoBehaviour
         player = GameObject.Find("Cube");
         trajectory = player.transform.forward;
         m_Rigidbody = GetComponent<Rigidbody>();
+        Debug.Log(trajectory);
     }
 
     private void Update()
     {
-        m_Rigidbody.velocity = trajectory;
+        m_Rigidbody.velocity = trajectory * 10;
     }
 
     private void OnTriggerEnter(Collider other)
