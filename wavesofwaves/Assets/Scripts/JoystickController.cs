@@ -58,7 +58,7 @@ public class JoystickController : MonoBehaviour
         // Move the player to it's current position plus the movement.
         playerRigidbody.MovePosition(transform.position + movement);
         */
-        playerRigidbody.velocity = new Vector3(3 * h, 0, 3 * v);
+        playerRigidbody.velocity = new Vector3(speed * h, 0, speed * v);
         float heading = Mathf.Atan2(xs, ys);
         transform.rotation = Quaternion.EulerAngles(0, heading, 0);
     }
