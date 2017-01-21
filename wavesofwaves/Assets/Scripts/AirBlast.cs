@@ -1,15 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class AirBlast : MonoBehaviour
 {
     public float speed = 10f;
     public float force = 1000f;
+    public float maxStunTime = 0.5f;
 
     private Vector3 trajectory;
     private Rigidbody m_Rigidbody;
     private GameObject player;
+    private GameObject enemy;
+    private float currStunTime = 0f;
 
     private void Start()
     {
@@ -24,14 +28,26 @@ public class AirBlast : MonoBehaviour
     private void Update()
     {
         m_Rigidbody.velocity = trajectory * speed;
+
+        // Enemy is 'stunned' while force is applied
+        if (currStunTime > 0)
+        {
+            currStunTime -= Time.deltaTime;
+        }
+        else if (enemy != null)
+        {
+            enemy.GetComponent<NavMeshAgent>().enabled = true;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Enemy")
         {
-            Rigidbody enemy = other.GetComponent<Rigidbody>();
-            enemy.AddForce(trajectory * force);
+            enemy = other.gameObject;
+            enemy.GetComponent<NavMeshAgent>().enabled = false;
+            enemy.GetComponent<Rigidbody>().AddForce(trajectory * force);
+            currStunTime = maxStunTime;
         }
     }
 
