@@ -16,7 +16,6 @@ public class AirBlast : MonoBehaviour
         player = GameObject.FindGameObjectWithTag("Player");
         trajectory = player.transform.forward;
         m_Rigidbody = GetComponent<Rigidbody>();
-        Debug.Log(trajectory);
         transform.Rotate(new Vector3(0, 270, 0));
         transform.Translate(new Vector3(trajectory.x + 1, trajectory.y, trajectory.z - 1));
     }
