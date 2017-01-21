@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 33313414117053480}
   - component: {fileID: 114039642060523416}
   - component: {fileID: 54008254943946584}
+  - component: {fileID: 114255419008738342}
   m_Layer: 0
   m_Name: AirBlast
   m_TagString: Untagged
@@ -103,11 +104,24 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1190956747339600}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2cc2872b3f332374c97870d435d726a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114255419008738342
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1190956747339600}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4ef4b8ddf195a14e9d1f995dc3391d0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xFire: 0
+  yFire: 0
 --- !u!135 &135752366889019784
 SphereCollider:
   m_ObjectHideFlags: 1
