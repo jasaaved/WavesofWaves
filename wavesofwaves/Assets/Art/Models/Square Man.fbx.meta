@@ -14,6 +14,7 @@ ModelImporter:
     100012: Right Arm
     100014: Right Leg
     100016: //RootNode
+    100018: Top Hat
     400000: Body
     400002: Camera
     400004: Head
@@ -23,24 +24,28 @@ ModelImporter:
     400012: Right Arm
     400014: Right Leg
     400016: //RootNode
+    400018: Top Hat
     2300000: Body
     2300002: Head
     2300004: Left Arm
     2300006: Left Leg
     2300008: Right Arm
     2300010: Right Leg
+    2300012: Top Hat
     3300000: Body
     3300002: Head
     3300004: Left Arm
     3300006: Left Leg
     3300008: Right Arm
     3300010: Right Leg
+    3300012: Top Hat
     4300000: Left Leg
     4300002: Right Arm
     4300004: Right Leg
     4300006: Left Arm
     4300008: Head
     4300010: Body
+    4300012: Top Hat
   materials:
     importMaterials: 1
     materialName: 0
