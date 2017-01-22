@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public float waterTimer;
     private float lightTimer;
+    private AudioSource rawwwwr;
 
     void Awake()
     {
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
         playerController = GetComponent<PlayerController>();
         anim = GetComponentInChildren<Animator>();
+        rawwwwr = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -47,6 +49,7 @@ public class PlayerController : MonoBehaviour
         airTimer = 0;
         waterTimer = 0;
         lightTimer = 0;
+        airCooldown = 1.25f;
     }
 
     void FixedUpdate()
@@ -83,7 +86,12 @@ public class PlayerController : MonoBehaviour
             return;
         }
         // Actviate air ability
-        if ((Mathf.Abs(xFire) > 0.2 || Mathf.Abs(yFire) > 0.2) && airTimer <= 0)
+        if(Input.GetButton("Fire1") && GameManager.Instance.isUsingMouse && airTimer <= 0)
+        {
+            AirBlast();
+            airTimer = airCooldown;
+        }
+        else if ((Mathf.Abs(xFire) > 0.2 || Mathf.Abs(yFire) > 0.2) && airTimer <= 0)
         {
             AirBlast();
             airTimer = airCooldown;
@@ -153,6 +161,7 @@ public class PlayerController : MonoBehaviour
     void AirBlast()
     {
         GameObject.Instantiate(Airblast, transform.position, transform.rotation);
+        rawwwwr.Play();
     }
 
     void WaterWave()

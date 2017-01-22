@@ -16,6 +16,8 @@ public class EnemyMovement : MonoBehaviour
     public bool stunned;
     [HideInInspector]
     public bool confused;
+    [HideInInspector]
+    public Vector3 randomDestination;
 
     void Awake ()
     {
@@ -53,7 +55,7 @@ public class EnemyMovement : MonoBehaviour
             else if(ccTimer > 0 && confused)
             {
                 ccTimer -= Time.deltaTime;
-                nav.SetDestination(RandomDestination());
+                nav.SetDestination(randomDestination);
             }
             else if (ccTimer <= 0)
             {
