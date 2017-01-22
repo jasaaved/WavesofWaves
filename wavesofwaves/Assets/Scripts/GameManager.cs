@@ -36,7 +36,6 @@ public class GameManager : MonoBehaviour
     // UI
     public GameObject gameoverMenu;
     public GameObject HUDMenu;
-    public Text scoreText;
     public Text hiScore;
     public Text displayText;
     public Canvas canvas;
@@ -149,5 +148,10 @@ public class GameManager : MonoBehaviour
         tempTextBox.color = color;
         //tempTextBox.CrossFadeAlpha(0f, 5f, true);
         Destroy(tempTextBox, 2.5f);
+    }
+
+    public void AddScore(int amount)
+    {
+        score += amount;
     }
 }
