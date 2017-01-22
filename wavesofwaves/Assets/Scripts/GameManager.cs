@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -50,7 +51,7 @@ public class GameManager : MonoBehaviour
     {
         currentState = StateType.PLAYING;
         isGameOver = false;
-        DisplayText("Start!");
+        DisplayText("Wave 1 Start!");
     }
 
     public void Update()
@@ -106,23 +107,39 @@ public class GameManager : MonoBehaviour
 
     public void LevelCompleted()
     {
+        currentLevel++;
         if (levelUpSound)
         {
             AudioSource.PlayClipAtPoint(levelUpSound, transform.position);
         }
-        DisplayText("Level Completed! Get ready for the next wave!", 14);
-        StartCoroutine("StartCountdown");
+
+        if(currentLevel == 3)
+        {
+            DisplayText("Level completed!");
+            StartCoroutine("LevelCountDown()", 2);
+        }
+        else
+        {
+            DisplayText("Wave Destroyed! Wave " + currentLevel + "incoming!", 20);
+            StartCoroutine("StartCountdown");
+        }
     }
 
     public IEnumerator StartCountdown()
     {
         yield return new WaitForSeconds(5);
-        IncrementLevel();
+        ResetSpawners();
+    }
+
+    public IEnumerator LevelCountDown(int level)
+    {
+        yield return new WaitForSeconds(5);
+        SceneManager.LoadScene(level);
     }
  
-    public void IncrementLevel()
+    public void ResetSpawners()
     {
-        currentLevel++;
+
         EnemySpawner[] spawners = FindObjectsOfType<EnemySpawner>();
         DisplayText("GO!");
 

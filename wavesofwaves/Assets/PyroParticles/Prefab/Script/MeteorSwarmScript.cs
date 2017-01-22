@@ -18,6 +18,8 @@ namespace DigitalRuby.PyroParticles
     {
         [Tooltip("The game object prefab that represents the meteor.")]
         public GameObject MeteorPrefab;
+        [Tooltip("The game object prefab that represents the meteor spawn location.")]
+        public GameObject MeteorSpawn;
 
         [Tooltip("Explosion particle system that should be emitted for each initial collision.")]
         public ParticleSystem MeteorExplosionParticleSystem;
@@ -65,6 +67,7 @@ namespace DigitalRuby.PyroParticles
         public event MeteorSwarmCollisionDelegate CollisionDelegate;
 
         private float elapsedSecond = 1.0f;
+        private GameObject spawn;
 
         private IEnumerator SpawnMeteor()
         {
@@ -81,6 +84,10 @@ namespace DigitalRuby.PyroParticles
             meteor.transform.position = src;
             Vector3 dest = gameObject.transform.position + (UnityEngine.Random.insideUnitSphere * DestinationRadius);
             dest.y = 0.0f;
+
+            // draw spawn point circle
+            spawn = GameObject.Instantiate(MeteorSpawn);
+            spawn.transform.position = dest;
 
             // get the direction and set speed based on how fast the meteor should arrive at the destination
             Vector3 dir = (dest - src);
@@ -137,6 +144,7 @@ namespace DigitalRuby.PyroParticles
 
             if (Duration > 4.0f && (elapsedSecond += Time.deltaTime) >= 5.0f)
             {
+                //THIS IS FOR METEOR FREQUENCY!!!!!!
                 elapsedSecond = elapsedSecond - 10.0f;
                 SpawnMeteors();
             }
@@ -167,6 +175,7 @@ namespace DigitalRuby.PyroParticles
             GameObject.Destroy(obj.GetComponent<Collider>());
             GameObject.Destroy(obj.GetComponent<Rigidbody>());
             GameObject.Destroy(obj.GetComponent<TrailRenderer>());
+            Destroy(spawn);
         }
 
         public void HandleCollision(GameObject obj, Collision col)
@@ -203,6 +212,7 @@ namespace DigitalRuby.PyroParticles
 
             if (col.gameObject.CompareTag("Enemy"))
             {
+                print("KILL ENEMY");
                 col.gameObject.GetComponent<EnemyHealth>().Death();
                 
             }
