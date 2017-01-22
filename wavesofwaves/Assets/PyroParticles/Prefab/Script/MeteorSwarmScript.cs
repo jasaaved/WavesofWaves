@@ -137,7 +137,7 @@ namespace DigitalRuby.PyroParticles
 
             if (Duration > 4.0f && (elapsedSecond += Time.deltaTime) >= 5.0f)
             {
-                elapsedSecond = elapsedSecond - 30.0f;
+                elapsedSecond = elapsedSecond - 10.0f;
                 SpawnMeteors();
             }
         }
@@ -204,12 +204,15 @@ namespace DigitalRuby.PyroParticles
             if (col.gameObject.CompareTag("Enemy"))
             {
                 col.gameObject.GetComponent<EnemyHealth>().Death();
+                
             }
             else if (col.gameObject.CompareTag("Player"))
             {
                 col.gameObject.GetComponent<PlayerHealth>().Death();
+                
             }
-           
+
+            Camera.main.GetComponent<CameraShaking>().Shake(1.0f, .3f);
 
             GameObject.Destroy(r);
 
