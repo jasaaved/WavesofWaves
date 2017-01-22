@@ -85,6 +85,7 @@ ModelImporter:
     7400004: Elephant Idle
     7400006: Water Attack
     7400008: Laser Eyes
+    7400010: Walking
     9500000: //RootNode
     13700000: Low Poly Elephant
   materials:
@@ -521,6 +522,106 @@ ModelImporter:
       hasAdditiveReferencePose: 0
       loopTime: 0
       loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask:
+      - path: 
+        weight: 1
+      - path: Armature
+        weight: 1
+      - path: Armature/Body Back
+        weight: 1
+      - path: Armature/Body Back/Butt
+        weight: 1
+      - path: Armature/Body Back/Butt/Butt_end
+        weight: 1
+      - path: Armature/Body Back/Hip  RB
+        weight: 1
+      - path: Armature/Body Back/Hip  RB/Leg RB
+        weight: 1
+      - path: Armature/Body Back/Hip  RB/Leg RB/Foot RB
+        weight: 1
+      - path: Armature/Body Back/Hip  RB/Leg RB/Foot RB/Foot RB_end
+        weight: 1
+      - path: Armature/Body Back/Hip LB
+        weight: 1
+      - path: Armature/Body Back/Hip LB/Leg LB
+        weight: 1
+      - path: Armature/Body Back/Hip LB/Leg LB/Foot LB
+        weight: 1
+      - path: Armature/Body Back/Hip LB/Leg LB/Foot LB/Foot LB_end
+        weight: 1
+      - path: Armature/Body Front
+        weight: 1
+      - path: Armature/Body Front/Head
+        weight: 1
+      - path: Armature/Body Front/Head/Trunk Bone 1
+        weight: 1
+      - path: Armature/Body Front/Head/Trunk Bone 1/Trunk Bone 2
+        weight: 1
+      - path: Armature/Body Front/Head/Trunk Bone 1/Trunk Bone 2/Trunk Bone 3
+        weight: 1
+      - path: Armature/Body Front/Head/Trunk Bone 1/Trunk Bone 2/Trunk Bone 3/Trunk
+          Bone 4
+        weight: 1
+      - path: Armature/Body Front/Head/Trunk Bone 1/Trunk Bone 2/Trunk Bone 3/Trunk
+          Bone 4/Trunk Bone 4_end
+        weight: 1
+      - path: Armature/Body Front/Hip LF
+        weight: 1
+      - path: Armature/Body Front/Hip LF/Leg LF
+        weight: 1
+      - path: Armature/Body Front/Hip LF/Leg LF/Foot LF
+        weight: 1
+      - path: Armature/Body Front/Hip LF/Leg LF/Foot LF/Foot LF_end
+        weight: 1
+      - path: Armature/Body Front/Hip RF
+        weight: 1
+      - path: Armature/Body Front/Hip RF/Leg RF
+        weight: 1
+      - path: Armature/Body Front/Hip RF/Leg RF/Foot RF
+        weight: 1
+      - path: Armature/Body Front/Hip RF/Leg RF/Foot RF/Foot RF_end
+        weight: 1
+      - path: Armature/Body Front/Left Ear Root
+        weight: 1
+      - path: Armature/Body Front/Left Ear Root/Left Ear Bone
+        weight: 1
+      - path: Armature/Body Front/Left Ear Root/Left Ear Bone/Left Ear Bone_end
+        weight: 1
+      - path: Armature/Body Front/Right Ear Root
+        weight: 1
+      - path: Armature/Body Front/Right Ear Root/Right Ear Bone
+        weight: 1
+      - path: Armature/Body Front/Right Ear Root/Right Ear Bone/Right Ear Bone_end
+        weight: 1
+      - path: Low Poly Elephant
+        weight: 1
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Walking
+      takeName: Armature|ArmatureAction
+      firstFrame: 195
+      lastFrame: 244
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 1
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 1
+      loopBlend: 1
       loopBlendOrientation: 0
       loopBlendPositionY: 0
       loopBlendPositionXZ: 0
