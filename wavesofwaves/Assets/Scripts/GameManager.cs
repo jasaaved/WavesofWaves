@@ -28,7 +28,7 @@ public class GameManager : MonoBehaviour
     public bool isLevelCompleted;
 
     // Wave
-    public int scoreInt;
+    public static int scoreInt;
     public int hiScoreInt;
     public int numberOfWaves;
     public int currentWave;
