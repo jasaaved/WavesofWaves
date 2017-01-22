@@ -25,7 +25,6 @@ public class EnemyInRange : MonoBehaviour {
     {
         if (other.gameObject.tag == "Enemy")
         {
-            print(other.gameObject.name + "ENTER");
             enemiesInRange++;
             Animator enemyAnim = other.GetComponentInChildren<Animator>();
             enemyAnim.SetTrigger("Catch");
@@ -39,7 +38,6 @@ public class EnemyInRange : MonoBehaviour {
     {
         if (other.gameObject.tag == "Enemy")
         {
-            print(other.gameObject.name + "EXIT");
             enemiesInRange--;
             Animator enemyAnim = other.GetComponentInChildren<Animator>();
             enemyAnim.SetBool("Capturing", false);

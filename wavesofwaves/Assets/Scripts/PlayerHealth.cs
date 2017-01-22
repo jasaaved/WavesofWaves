@@ -40,6 +40,22 @@ public class PlayerHealth : MonoBehaviour {
 
     public void Death()
     {
+        // Switch to ragdoll form
+        GetComponent<BoxCollider>().enabled = false;
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).gameObject.name == "Scaler")
+            {
+                // De-activate scalar
+                transform.GetChild(i).gameObject.SetActive(false);
+            }
+            if (transform.GetChild(i).gameObject.name == "Ragdoll")
+            {
+                // Activate ragdool
+                transform.GetChild(i).gameObject.SetActive(true);
+            }
+        }
+
         //Instantiate(explosionParticle, transform.position, Quaternion.identity);
         GameManager.Instance.GameOver();
 
