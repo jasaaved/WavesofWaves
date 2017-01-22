@@ -89,13 +89,13 @@ public class PlayerController : MonoBehaviour
             airTimer = airCooldown;
         }
         // Activate water ability
-        if (waterTimer <= 0 && Input.GetButtonDown("Fire2"))
+        if (waterTimer <= 0 && Input.GetAxisRaw("Fire2") != 0)
         {
             WaterWave();
             waterTimer = waterCooldown;
         }
         // Activate light ability
-        if (lightTimer <= 0 && Input.GetButtonDown("Fire3"))
+        if (lightTimer <= 0 && Input.GetAxisRaw("Fire3") != 0)
         {
             LightWave();
             lightTimer = 3f;

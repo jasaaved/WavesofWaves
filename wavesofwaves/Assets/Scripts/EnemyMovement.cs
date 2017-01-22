@@ -4,8 +4,9 @@ using UnityEngine.AI;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private Transform player;               // Reference to the player's position.
-    private NavMeshAgent nav;               // Reference to the nav mesh agent.
+    private Transform player;              // Reference to the player's position.
+    [HideInInspector]
+    public NavMeshAgent nav;               // Reference to the nav mesh agent.
     private float maxSpeed;
     [HideInInspector]
     public bool slowed;
@@ -13,6 +14,8 @@ public class EnemyMovement : MonoBehaviour
     public float ccTimer;
     [HideInInspector]
     public bool stunned;
+    [HideInInspector]
+    public bool confused;
 
     void Awake ()
     {
@@ -23,6 +26,7 @@ public class EnemyMovement : MonoBehaviour
         ccTimer = 0;
         slowed = false;
         stunned = false;
+        confused = false;
     }
 
 
@@ -46,6 +50,11 @@ public class EnemyMovement : MonoBehaviour
                 nav.speed = 0f;
                 nav.enabled = false;
             }
+            else if(ccTimer > 0 && confused)
+            {
+                ccTimer -= Time.deltaTime;
+                nav.SetDestination(RandomDestination());
+            }
             else if (ccTimer <= 0)
             {
                 nav.enabled = true;
@@ -53,4 +62,9 @@ public class EnemyMovement : MonoBehaviour
             }
         }
     } 
+
+    public Vector3 RandomDestination()
+    {
+        return new Vector3(Random.Range(-40, 40), 2.6f, Random.Range(-40, 40));
+    }
 }
