@@ -24,6 +24,7 @@ public class LightWave : MonoBehaviour
     {
         if(other.tag == "Enemy")
         {
+            print("CONFUSE");
             EnemyMovement enemy = other.GetComponent<EnemyMovement>();
             enemy.confused = true;
             enemy.ccTimer = confuseTime;
