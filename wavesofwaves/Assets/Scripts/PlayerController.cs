@@ -33,6 +33,11 @@ public class PlayerController : MonoBehaviour
     private float lightTimer;
     private AudioSource rawwwwr;
 
+    // Audio
+    public AudioClip lightSound;
+    public AudioClip waterSound;
+    public AudioClip airSound;
+
     void Awake()
     {
         // Create a layer mask for the floor layer.
@@ -160,16 +165,28 @@ public class PlayerController : MonoBehaviour
     void AirBlast()
     {
         GameObject.Instantiate(Airblast, transform.position, transform.rotation);
+        if (airSound)
+        {
+            AudioSource.PlayClipAtPoint(airSound, Camera.main.transform.position, .5f);
+        }
         rawwwwr.Play();
     }
 
     void WaterWave()
     {
+        if (waterSound)
+        {
+            AudioSource.PlayClipAtPoint(waterSound, Camera.main.transform.position, .5f);
+        }
         GameObject.Instantiate(Waterwave);
     }
 
     void LightWave()
     {
+        if (lightSound)
+        {
+            AudioSource.PlayClipAtPoint(lightSound, Camera.main.transform.position, .5f);
+        }
         GameObject.Instantiate(Lightwave, transform.position + transform.forward * 5, transform.rotation);
     }
 

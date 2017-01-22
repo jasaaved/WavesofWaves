@@ -207,7 +207,7 @@ namespace DigitalRuby.PyroParticles
             }
             else if (col.gameObject.CompareTag("Player"))
             {
-                col.gameObject.GetComponent<PlayerHealth>().Death()
+                col.gameObject.GetComponent<PlayerHealth>().Death();
             }
            
 
