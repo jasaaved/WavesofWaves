@@ -29,8 +29,8 @@ public class PlayerController : MonoBehaviour
     public GameObject gamemanager;
     private float airTimer;
     [HideInInspector]
-    public float waterTimer;
-    private float lightTimer;
+    public float waterTimer { get; private set; }
+    public float lightTimer { get; private set; }
     private AudioSource rawwwwr;
 
     // Audio
@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
         if (lightTimer <= 0 && Input.GetAxisRaw("Fire3") != 0)
         {
             LightWave();
-            lightTimer = 3f;
+            lightTimer = lightCooldown;
         }
 
         airTimer -= Time.deltaTime;
@@ -132,7 +132,7 @@ public class PlayerController : MonoBehaviour
             float heading = Mathf.Atan2(xs, ys);
             if (!GameManager.Instance.isUsingMouse && Mathf.Abs(xs) >= 0.2 && Mathf.Abs(ys) >= 0.2)
             {
-                transform.rotation = Quaternion.EulerAngles(0, heading, 0);
+                transform.rotation = Quaternion.Euler(0, heading, 0);
             }
         }
     }
