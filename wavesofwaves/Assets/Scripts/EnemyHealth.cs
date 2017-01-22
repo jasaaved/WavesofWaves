@@ -25,6 +25,7 @@ public class EnemyHealth : MonoBehaviour {
         GameManager.Instance.AddScore(100);
         GameManager.Instance.enemies.Remove(this);
         GameManager.Instance.CheckEnemies();
+        //Camera.main.GetComponent<CameraShaking>().Shake(0.3f, 0.3f);
         Destroy(gameObject);
     }
 }

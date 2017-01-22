@@ -33,6 +33,7 @@ public class PlayerHealth : MonoBehaviour {
     public void TakeDamage(int damage)
     {
         health -= damage;
+        Camera.main.GetComponent<CameraShaking>().Shake(0.3f, 0.3f);
         CheckDeath();
     }
 
