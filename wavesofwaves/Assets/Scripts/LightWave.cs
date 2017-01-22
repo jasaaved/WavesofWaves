@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LightWave : MonoBehaviour {
 
-    public float confuseTime = 2f;
+    public float confuseTime;
 
     private GameObject player;
     private Light glow;
@@ -15,6 +15,7 @@ public class LightWave : MonoBehaviour {
         glow = GetComponent<Light>();
         Destroy(this.gameObject, 0.5f);
         glow.intensity = 0;
+        confuseTime = 5f;
     }
 
     private void Update()
