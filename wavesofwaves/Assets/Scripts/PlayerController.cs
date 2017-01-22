@@ -4,19 +4,28 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public float speed = 6f;            // The speed that the player will move at.
-    public float waterCooldown = 1f;
-    public float airCooldown = 1f;
-
+    // Components
     Vector3 movement;                   // The vector to store the direction of the player's movement.
     Animator anim;                      // Reference to the animator component.
     Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
+    private PlayerController playerController;
     int floorMask;                      // A layer mask so that a ray can be cast just at gameobjects on the floor layer.
     float camRayLength = 100f;          // The length of the ray from the camera into the scene.
+
+    // Movement
+    public float speed = 6f;            // The speed that the player will move at.
+    public float xVelAdj;
+    public float yVelAdj;
+    private float xFire;
+    private float yFire;
+
+    // Abilities
+    public float waterCooldown = 1f;
+    public float airCooldown = 1f;
+    public float lightCooldown = 1f;
     public GameObject Airblast;
     public GameObject Waterwave;
     public GameObject Lightwave;
-
     private float airTimer;
     [HideInInspector]
     public float waterTimer;
@@ -26,9 +35,9 @@ public class PlayerController : MonoBehaviour
     {
         // Create a layer mask for the floor layer.
         floorMask = LayerMask.GetMask("Floor");
-
         // Set up references.
         playerRigidbody = GetComponent<Rigidbody>();
+        playerController = GetComponent<PlayerController>();
     }
 
     private void Start()
@@ -38,30 +47,44 @@ public class PlayerController : MonoBehaviour
         lightTimer = 0;
     }
 
-
     void FixedUpdate()
     {
-        // Turn the player to face the mouse cursor.
-        if (GameManager.Instance.isUsingMouse && waterTimer <= 0)
+        xVelAdj = Input.GetAxis("xMove");
+        yVelAdj = Input.GetAxis("yMove");
+
+        if (Input.GetAxisRaw("xMoveKey") != 0 || Input.GetAxisRaw("yMoveKey") != 0)
         {
-            //Turning();
+            xVelAdj = Input.GetAxisRaw("xMoveKey");
+            yVelAdj = Input.GetAxisRaw("yMoveKey");
         }
+        if (!GameManager.Instance.isUsingMouse && playerController.waterTimer <= 0)
+        {
+            xFire = Input.GetAxis("xShoot");
+            yFire = Input.GetAxis("yShoot");
+        }
+        else
+        {
+            Turning();
+        }
+
+        Move(xVelAdj, yVelAdj, xFire, yFire);
     }
 
     private void Update()
     {
-        if (airTimer <= 0 && Input.GetButtonDown("Fire1"))
+        // Actviate air ability
+        if ((Mathf.Abs(xFire) > 0.2 || Mathf.Abs(yFire) > 0.2) && airTimer <= 0)
         {
             AirBlast();
             airTimer = airCooldown;
         }
-
+        // Activate water ability
         if (waterTimer <= 0 && Input.GetButtonDown("Fire2"))
         {
             WaterWave();
             waterTimer = waterCooldown;
         }
-
+        // Activate light ability
         if (lightTimer <= 0 && Input.GetButtonDown("Fire3"))
         {
             LightWave();
@@ -72,16 +95,18 @@ public class PlayerController : MonoBehaviour
         lightTimer -= Time.deltaTime;
     }
 
-    void Move(float h, float v)
+    void Move(float h, float v, float xs, float ys)
     {
-        // Set the movement vector based on the axis input.
-        movement.Set(h, 0f, v);
+        playerRigidbody.velocity = new Vector3(speed * h, 0, speed * v);
 
-        // Normalise the movement vector and make it proportional to the speed per second.
-        movement = movement.normalized * speed * Time.deltaTime;
-
-        // Move the player to it's current position plus the movement.
-        playerRigidbody.MovePosition(transform.position + movement);
+        if (playerController.waterTimer <= 0)
+        {
+            float heading = Mathf.Atan2(xs, ys);
+            if (!GameManager.Instance.isUsingMouse)
+            {
+                transform.rotation = Quaternion.EulerAngles(0, heading, 0);
+            }
+        }
     }
 
     void Turning()
