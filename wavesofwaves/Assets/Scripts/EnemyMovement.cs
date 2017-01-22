@@ -66,7 +66,6 @@ public class EnemyMovement : MonoBehaviour
                 nav.SetDestination(randomDestination);
             }
             ccTimer -= Time.deltaTime;
-            Debug.Log(ccTimer);
         }
 
         WalkingAnimation();
