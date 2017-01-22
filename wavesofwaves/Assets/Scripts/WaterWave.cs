@@ -5,6 +5,7 @@ using UnityEngine;
 public class WaterWave : MonoBehaviour {
 
     public float slowTime = 2f;
+    public float spinTime;
 
     private GameObject player;
     private Quaternion rotation;
@@ -20,21 +21,25 @@ public class WaterWave : MonoBehaviour {
         playerRotation = player.transform.rotation;
         initialRotation = player.transform.rotation;
         transform.position = player.transform.position + (player.transform.forward * 12);
-        Destroy(this.gameObject, 1f);
+        Destroy(this.gameObject, 3f);
     }
 
     private void Update()
     {
-        //Get the degrees to set
-        currentRotation += Time.deltaTime * 360;
-        //Change the Euler Angles of the Quaternions
-        playerRotation.eulerAngles = initialRotation.eulerAngles + new Vector3(0, currentRotation, 0);
-        rotation.eulerAngles = initialRotation.eulerAngles + new Vector3(0, currentRotation, 0);
-        //Set position
-        transform.position = player.transform.position + (player.transform.forward * 12);
-        //Set the rotation of player and water.
-        player.transform.rotation = playerRotation;
-        transform.rotation = rotation;
+        spinTime -= Time.deltaTime;
+        if(spinTime >= 0)
+        {
+            //Get the degrees to set
+            currentRotation += Time.deltaTime * 360;
+            //Change the Euler Angles of the Quaternions
+            playerRotation.eulerAngles = initialRotation.eulerAngles + new Vector3(0, currentRotation, 0);
+            rotation.eulerAngles = initialRotation.eulerAngles + new Vector3(0, currentRotation, 0);
+            //Set position
+            transform.position = player.transform.position + (player.transform.forward * 12);
+            //Set the rotation of player and water.
+            player.transform.rotation = playerRotation;
+            transform.rotation = rotation;
+        }
     }
 
     private void OnTriggerEnter(Collider other)
