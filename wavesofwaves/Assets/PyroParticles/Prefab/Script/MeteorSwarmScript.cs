@@ -145,7 +145,7 @@ namespace DigitalRuby.PyroParticles
             if (Duration > 4.0f && (elapsedSecond += Time.deltaTime) >= 5.0f)
             {
                 //THIS IS FOR METEOR FREQUENCY!!!!!!
-                elapsedSecond = elapsedSecond - 10.0f;
+                elapsedSecond = elapsedSecond - 5.0f;
                 SpawnMeteors();
             }
         }
