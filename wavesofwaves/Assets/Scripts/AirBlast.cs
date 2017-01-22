@@ -28,16 +28,6 @@ public class AirBlast : MonoBehaviour
     private void Update()
     {
         m_Rigidbody.velocity = trajectory * speed;
-
-        // Enemy is 'stunned' while force is applied
-        //if (currStunTime > 0)
-        //{
-        //    currStunTime -= Time.deltaTime;
-        //}
-        //else if (enemy != null)
-        //{
-        //    enemy.GetComponent<NavMeshAgent>().enabled = true;
-        //}
     }
 
     private void OnTriggerEnter(Collider other)
