@@ -118,16 +118,14 @@ public class PlayerController : MonoBehaviour
 
     void Move(float h, float v, float xs, float ys)
     {
-        
-
         playerRigidbody.velocity = new Vector3(speed * h, playerRigidbody.velocity.y, speed * v);
 
         if (playerController.waterTimer <= 0)
         {
             float heading = Mathf.Atan2(xs, ys);
-            if (!GameManager.Instance.isUsingMouse && Mathf.Abs(xs) >= 0.2 && Mathf.Abs(ys) >= 0.2)
+            if (Mathf.Abs(xs) >= 0.2 && Mathf.Abs(ys) >= 0.2)
             {
-                transform.rotation = Quaternion.Euler(0, heading, 0);
+                transform.rotation = Quaternion.EulerAngles(0, heading, 0);
             }
         }
     }
