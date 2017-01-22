@@ -35,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
 
         spawnTimer -= Time.deltaTime;
 
-        if (spawnTimer <= 0 && spawnCount < Mathf.Round((GameManager.Instance.currentLevel * 1.5f)))
+        if (spawnTimer <= 0 && spawnCount < Mathf.Round((GameManager.Instance.currentLevel * 1.5f)) && !isFinished)
         {
             for (int i = 0; i <= (int)Random.Range(minPackSize, maxPackSize); i++)
             {
