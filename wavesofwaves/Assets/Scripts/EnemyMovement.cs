@@ -58,6 +58,7 @@ public class EnemyMovement : MonoBehaviour
             if (ccTimer > 0 && slowed && !stunned)
             {
                 nav.speed = 1.5f;
+                DisplaySlowEffect(true);
             }
             else if (ccTimer > 0 && stunned)
             {
@@ -71,6 +72,8 @@ public class EnemyMovement : MonoBehaviour
                 stunned = false;
                 slowed = false;
                 confused = false;
+
+                DisplaySlowEffect(false);
             }
 
             if (ccTimer > 0 && confused && !stunned)
@@ -97,6 +100,17 @@ public class EnemyMovement : MonoBehaviour
         else
         {
             anim.SetBool("Walking", true);
+        }
+    }
+
+    void DisplaySlowEffect(bool slow)
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).gameObject.name == "WaterParticle")
+            {
+                transform.GetChild(i).gameObject.SetActive(slow);
+            }
         }
     }
 }

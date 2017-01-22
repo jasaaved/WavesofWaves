@@ -28,6 +28,11 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (GameManager.Instance.isGameOver)
+        {
+            return;
+        }
+
         spawnTimer -= Time.deltaTime;
 
         if (spawnTimer <= 0 && spawnCount < Mathf.Round((GameManager.Instance.currentLevel * 1.5f)))
