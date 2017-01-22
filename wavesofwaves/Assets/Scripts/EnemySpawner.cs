@@ -30,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
     {
         spawnTimer -= Time.deltaTime;
 
-        if (spawnTimer <= 0 && spawnCount < Mathf.Round((GameManager.Instance.currentLevel * 1.3f)))
+        if (spawnTimer <= 0 && spawnCount < Mathf.Round((GameManager.Instance.currentLevel * 1.5f)))
         {
             for (int i = 0; i <= (int)Random.Range(minPackSize, maxPackSize); i++)
             {
@@ -40,7 +40,7 @@ public class EnemySpawner : MonoBehaviour
             }
             spawnCount++;
         }
-        else if(spawnCount >=  (GameManager.Instance.currentLevel * 2))
+        else if(spawnCount >=  (GameManager.Instance.currentLevel * 1.5f))
         {
             isFinished = true;
         }
