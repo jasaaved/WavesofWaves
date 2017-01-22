@@ -5,11 +5,14 @@ using UnityEngine;
 public class PlayerHealth : MonoBehaviour {
 
     public int enemiesInRange;
+    public int maxEnemiesInRange;
+    public int health;
+    public int maxHealth;
 
 
 	// Use this for initialization
 	void Start () {
-		
+        health = maxHealth;
 	}
 	
 	// Update is called once per frame
@@ -17,8 +20,27 @@ public class PlayerHealth : MonoBehaviour {
 		
 	}
 
-    private void OnTriggerEnter(Collider other)
-    {
 
+
+    public void CheckDeath()
+    {
+        if(health <= 0)
+        {
+            Death();
+        }
+    }
+
+    public void TakeDamage(int damage)
+    {
+        health -= damage;
+        CheckDeath();
+    }
+
+    public void Death()
+    {
+        GameManager.Instance.GameOver();
+
+        //TODO: DEATH STUFF
+       // Destroy(gameObject);
     }
 }

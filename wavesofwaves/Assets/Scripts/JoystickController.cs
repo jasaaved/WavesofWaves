@@ -10,6 +10,7 @@ public class JoystickController : MonoBehaviour
     Rigidbody playerRigidbody;          // Reference to the player's rigidbody.
     public int floorMask;
     float camRayLength = 100f;
+    private float attackTimer;
     private float airTimer;
     public float xVelAdj;
     public float yVelAdj;
@@ -27,6 +28,7 @@ public class JoystickController : MonoBehaviour
 
     private void Start()
     {
+        attackTimer = 0;
         airTimer = 0;
         playerController = GetComponent<PlayerController>();
     }
@@ -34,24 +36,28 @@ public class JoystickController : MonoBehaviour
 
     void FixedUpdate()
     {
-        xVelAdj = Input.GetAxis("xMove");
-        yVelAdj = Input.GetAxis("yMove");
+        if (!GameManager.Instance.isGameOver)
+        {
+            xVelAdj = Input.GetAxis("xMove");
+            yVelAdj = Input.GetAxis("yMove");
 
-        if(Input.GetAxisRaw("xMoveKey") != 0 || Input.GetAxisRaw("yMoveKey") != 0)
-        {
-            xVelAdj = Input.GetAxisRaw("xMoveKey");
-            yVelAdj = Input.GetAxisRaw("yMoveKey");
-        }
-        if (!GameManager.Instance.isUsingMouse && playerController.waterTimer <= 0)
-        {
-            xFire = Input.GetAxis("xShoot");
-            yFire = Input.GetAxis("yShoot");
-        }else
-        {
-            Turning();
-        }
+            if (Input.GetAxisRaw("xMoveKey") != 0 || Input.GetAxisRaw("yMoveKey") != 0)
+            {
+                xVelAdj = Input.GetAxisRaw("xMoveKey");
+                yVelAdj = Input.GetAxisRaw("yMoveKey");
+            }
+            if (!GameManager.Instance.isUsingMouse && playerController.waterTimer <= 0)
+            {
+                xFire = Input.GetAxis("xShoot");
+                yFire = Input.GetAxis("yShoot");
+            }
+            else
+            {
+                Turning();
+            }
 
-        Move(xVelAdj, yVelAdj, xFire, yFire);
+            Move(xVelAdj, yVelAdj, xFire, yFire);
+        }
     }
 
     void Turning()
@@ -81,6 +87,7 @@ public class JoystickController : MonoBehaviour
 
     private void Update()
     {
+
         if ((Mathf.Abs(xFire) > 0.2 || Mathf.Abs(yFire) > 0.2) && airTimer <= 0)
         {
             AirBlast();
@@ -102,6 +109,7 @@ public class JoystickController : MonoBehaviour
         // Move the player to it's current position plus the movement.
         playerRigidbody.MovePosition(transform.position + movement);
         */
+
         playerRigidbody.velocity = new Vector3(speed * h, 0, speed * v);
         if (playerController.waterTimer <= 0)
         {
