@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
     {
         if (gamemanager.GetComponent<GameManager>().isGameOver)
         {
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationZ;
             return;
         }
         xVelAdj = Input.GetAxis("xMove");
