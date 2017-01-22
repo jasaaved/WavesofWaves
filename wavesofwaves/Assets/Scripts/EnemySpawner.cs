@@ -35,7 +35,7 @@ public class EnemySpawner : MonoBehaviour
             for (int i = 0; i <= (int)Random.Range(minPackSize, maxPackSize); i++)
             {
                 GameObject enemy = enemyList[(int)Random.Range(0, enemyList.Length)];
-                Instantiate(enemy, new Vector3(transform.position.x + Random.Range(-2, 2), transform.position.y + 1, transform.position.z + Random.Range(-2, 2)), Quaternion.identity);
+                Instantiate(enemy, new Vector3(transform.position.x + Random.Range(-1, 1), transform.position.y + 1, transform.position.z + Random.Range(-1, 1)), Quaternion.identity);
                 spawnTimer = Random.Range(minSpawnTime, maxSpawnTime);
             }
             spawnCount++;
