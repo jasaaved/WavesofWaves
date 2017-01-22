@@ -29,7 +29,7 @@ public class LightWave : MonoBehaviour {
             EnemyMovement enemy = other.GetComponent<EnemyMovement>();
             enemy.confused = true;
             enemy.ccTimer = confuseTime;
-            enemy.nav.SetDestination(enemy.RandomDestination());
+            enemy.randomDestination = enemy.RandomDestination();
         }
     }
 }
