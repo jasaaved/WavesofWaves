@@ -18,6 +18,7 @@ public class EnemyMovement : MonoBehaviour
     public bool confused;
     [HideInInspector]
     public Vector3 randomDestination;
+    private Animator anim;
 
     void Awake ()
     {
@@ -29,6 +30,7 @@ public class EnemyMovement : MonoBehaviour
         slowed = false;
         stunned = false;
         confused = false;
+        anim = GetComponentInChildren<Animator>();
     }
 
 
@@ -63,10 +65,24 @@ public class EnemyMovement : MonoBehaviour
                 nav.speed = maxSpeed;
             }
         }
+
+        WalkingAnimation();
     } 
 
     public Vector3 RandomDestination()
     {
         return new Vector3(Random.Range(-40, 40), 2.6f, Random.Range(-40, 40));
+    }
+
+    void WalkingAnimation()
+    {
+        if (stunned)
+        {
+            anim.SetBool("Walking", false);
+        }
+        else
+        {
+            anim.SetBool("Walking", true);
+        }
     }
 }

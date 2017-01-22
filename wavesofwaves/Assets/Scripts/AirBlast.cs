@@ -7,13 +7,12 @@ public class AirBlast : MonoBehaviour
 {
     public float speed = 10f;
     public float force = 1000f;
-    public float maxStunTime = 0.5f;
+    public float stunTime = 0.5f;
 
     private Vector3 trajectory;
     private Rigidbody m_Rigidbody;
     private GameObject player;
     private GameObject enemy;
-    private float currStunTime = 0f;
 
     private void Start()
     {
@@ -36,9 +35,8 @@ public class AirBlast : MonoBehaviour
         {
             enemy = other.gameObject;
             enemy.GetComponent<EnemyMovement>().stunned = true;
-            enemy.GetComponent<EnemyMovement>().ccTimer = maxStunTime;
+            enemy.GetComponent<EnemyMovement>().ccTimer = stunTime;
             enemy.GetComponent<Rigidbody>().AddForce(trajectory * force);
-            currStunTime = maxStunTime;
         }
     }
 

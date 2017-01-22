@@ -26,6 +26,7 @@ public class EnemyInRange : MonoBehaviour {
         if (other.gameObject.tag == "Enemy")
         {
             enemiesInRange++;
+            other.GetComponentInChildren<Animator>().SetTrigger("Catch");
             playerController.speed += slow;
             CheckDeath();
         }
@@ -36,6 +37,7 @@ public class EnemyInRange : MonoBehaviour {
         if (other.gameObject.tag == "Enemy")
         {
             enemiesInRange--;
+            other.GetComponentInChildren<Animator>().ResetTrigger("Catch");
             playerController.speed -= slow;
         }
     }
