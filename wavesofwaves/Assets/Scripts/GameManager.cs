@@ -106,6 +106,10 @@ public class GameManager : MonoBehaviour
 
     public void LevelCompleted()
     {
+        if (levelUpSound)
+        {
+            AudioSource.PlayClipAtPoint(levelUpSound, transform.position);
+        }
         DisplayText("Level Completed! Get ready for the next wave!", 14);
         StartCoroutine("StartCountdown");
     }

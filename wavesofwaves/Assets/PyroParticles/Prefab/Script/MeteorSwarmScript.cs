@@ -44,7 +44,7 @@ namespace DigitalRuby.PyroParticles
         public float TimeToImpact = 1.0f;
 
         [SingleLine("How many meteors should be emitted per second (min and max)")]
-        public RangeOfIntegers MeteorsPerSecondRange = new RangeOfIntegers { Minimum = 5, Maximum = 10 };
+        public RangeOfIntegers MeteorsPerSecondRange = new RangeOfIntegers { Minimum = 1, Maximum = 1 };
 
         [SingleLine("Scale multiplier for meteors (min and max)")]
         public RangeOfFloats ScaleRange = new RangeOfFloats { Minimum = 0.25f, Maximum = 1.5f };
@@ -64,12 +64,12 @@ namespace DigitalRuby.PyroParticles
         [HideInInspector]
         public event MeteorSwarmCollisionDelegate CollisionDelegate;
 
-        private float elapsedSecond = 0.5f;
+        private float elapsedSecond = 1.0f;
 
         private IEnumerator SpawnMeteor()
         {
             {
-                float delay = UnityEngine.Random.Range(0.0f, 1.0f);
+                float delay = UnityEngine.Random.Range(5.0f, 10.0f);
                 yield return new WaitForSeconds(delay);
             }
 
@@ -135,9 +135,9 @@ namespace DigitalRuby.PyroParticles
         {
  	        base.Update();
 
-            if (Duration > 0.0f && (elapsedSecond += Time.deltaTime) >= 1.0f)
+            if (Duration > 4.0f && (elapsedSecond += Time.deltaTime) >= 5.0f)
             {
-                elapsedSecond = elapsedSecond - 1.0f;
+                elapsedSecond = elapsedSecond - 30.0f;
                 SpawnMeteors();
             }
         }

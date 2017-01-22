@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour {
     public int health;
     public int maxHealth;
     public GameObject explosionParticle;
+    public AudioClip hurtSound;
 
 
 	// Use this for initialization
@@ -34,12 +35,14 @@ public class PlayerHealth : MonoBehaviour {
     public void TakeDamage(int damage)
     {
         health -= damage;
-        Camera.main.GetComponent<CameraShaking>().Shake(0.3f, 0.3f);
+
         CheckDeath();
     }
 
     public void Death()
     {
+        Camera.main.GetComponent<CameraShaking>().Shake(0.3f, 0.3f);
+
         // Switch to ragdoll form
         GetComponent<BoxCollider>().enabled = false;
         for (int i = 0; i < transform.childCount; i++)
@@ -58,7 +61,10 @@ public class PlayerHealth : MonoBehaviour {
 
         //Instantiate(explosionParticle, transform.position, Quaternion.identity);
         GameManager.Instance.GameOver();
-
+        if (hurtSound)
+        {
+            AudioSource.PlayClipAtPoint(hurtSound, Camera.main.transform.position);
+        }
         //TODO: DEATH STUFF
        // Destroy(gameObject);
     }
