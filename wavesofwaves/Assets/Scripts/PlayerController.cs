@@ -130,7 +130,17 @@ public class PlayerController : MonoBehaviour
             float heading = Mathf.Atan2(xs, ys);
             if (Mathf.Abs(xs) >= 0.2 && Mathf.Abs(ys) >= 0.2)
             {
+                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY | 
+                    RigidbodyConstraints.FreezeRotationX | 
+                    RigidbodyConstraints.FreezeRotationZ;
                 transform.rotation = Quaternion.EulerAngles(0, heading, 0);
+            }
+            else
+            {
+                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY |
+                    RigidbodyConstraints.FreezeRotationX |
+                    RigidbodyConstraints.FreezeRotationY |
+                    RigidbodyConstraints.FreezeRotationZ;
             }
         }
     }
