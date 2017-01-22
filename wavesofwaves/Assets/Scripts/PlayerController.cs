@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
         // Set up references.
         playerRigidbody = GetComponent<Rigidbody>();
         playerController = GetComponent<PlayerController>();
+        anim = GetComponent<Animator>();
     }
 
     private void Start()
@@ -106,6 +107,17 @@ public class PlayerController : MonoBehaviour
 
     void Move(float h, float v, float xs, float ys)
     {
+        if (h > 0 || v > 0)
+        {
+            print("Walking");
+            anim.SetBool("Walking", true);
+        }
+        else
+        {
+            print("Idle");
+            anim.SetBool("Walking", false);
+        }
+
         playerRigidbody.velocity = new Vector3(speed * h, playerRigidbody.velocity.y, speed * v);
 
         if (playerController.waterTimer <= 0)
