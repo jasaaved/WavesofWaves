@@ -100,23 +100,18 @@ public class PlayerController : MonoBehaviour
             LightWave();
             lightTimer = 3f;
         }
+
         airTimer -= Time.deltaTime;
         waterTimer -= Time.deltaTime;
         lightTimer -= Time.deltaTime;
+
+        WalkingAnimation();
+        AirAttackAnimation();
     }
 
     void Move(float h, float v, float xs, float ys)
     {
-        if (h != 0 || v != 0)
-        {
-            print("Walking");
-            anim.SetBool("Walking", true);
-        }
-        else
-        {
-            print("Idle");
-            anim.SetBool("Walking", false);
-        }
+        
 
         playerRigidbody.velocity = new Vector3(speed * h, playerRigidbody.velocity.y, speed * v);
 
@@ -168,5 +163,30 @@ public class PlayerController : MonoBehaviour
     void LightWave()
     {
         GameObject.Instantiate(Lightwave, transform.position + transform.forward * 5, transform.rotation);
+    }
+
+    void WalkingAnimation()
+    {
+        if (xVelAdj != 0 || yVelAdj != 0)
+        {
+            anim.SetBool("Walking", true);
+        }
+        else
+        {
+            anim.SetBool("Walking", false);
+        }
+    }
+
+    void AirAttackAnimation()
+    {
+        // Animate air ability
+        if (Mathf.Abs(xFire) > 0.2 || Mathf.Abs(yFire) > 0.2)
+        {
+            anim.SetBool("Air Attack", true);
+        }
+        else
+        {
+            anim.SetBool("Air Attack", false);
+        }
     }
 }
