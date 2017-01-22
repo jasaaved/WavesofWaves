@@ -19,6 +19,7 @@ public class WaterWave : MonoBehaviour {
         rotation = transform.rotation;
         playerRotation = player.transform.rotation;
         initialRotation = player.transform.rotation;
+        transform.position = player.transform.position + (player.transform.forward * 12);
         Destroy(this.gameObject, 1f);
     }
 

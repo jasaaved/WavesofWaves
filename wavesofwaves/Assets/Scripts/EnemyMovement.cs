@@ -16,6 +16,8 @@ public class EnemyMovement : MonoBehaviour
     public bool stunned;
     [HideInInspector]
     public bool confused;
+    [HideInInspector]
+    public Vector3 randomDestination;
 
     void Awake ()
     {
@@ -41,25 +43,28 @@ public class EnemyMovement : MonoBehaviour
             }
             if (ccTimer > 0 && slowed && !stunned)
             {
-                ccTimer -= Time.deltaTime;
                 nav.speed = 1.5f;
             }
             else if (ccTimer > 0 && stunned)
             {
-                ccTimer -= Time.deltaTime;
                 nav.speed = 0f;
                 nav.enabled = false;
-            }
-            else if(ccTimer > 0 && confused)
-            {
-                ccTimer -= Time.deltaTime;
-                nav.SetDestination(RandomDestination());
             }
             else if (ccTimer <= 0)
             {
                 nav.enabled = true;
                 nav.speed = maxSpeed;
+                stunned = false;
+                slowed = false;
+                confused = false;
             }
+
+            if (ccTimer > 0 && confused && !stunned)
+            {
+                nav.SetDestination(randomDestination);
+            }
+            ccTimer -= Time.deltaTime;
+            Debug.Log(ccTimer);
         }
     } 
 
