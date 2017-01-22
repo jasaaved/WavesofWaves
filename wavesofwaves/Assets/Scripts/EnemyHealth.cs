@@ -24,7 +24,7 @@ public class EnemyHealth : MonoBehaviour {
 
     public void Death()
     {
-        particleInstance = Instantiate(explosionParticle, transform.position, Quaternion.identity);
+        //particleInstance = Instantiate(explosionParticle, transform.position, Quaternion.identity);
         GameManager.Instance.AddScore(100);
         GameManager.Instance.enemies.Remove(this);
         GameManager.Instance.CheckEnemies();

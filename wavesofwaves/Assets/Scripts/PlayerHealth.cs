@@ -40,7 +40,7 @@ public class PlayerHealth : MonoBehaviour {
 
     public void Death()
     {
-        Instantiate(explosionParticle, transform.position, Quaternion.identity);
+        //Instantiate(explosionParticle, transform.position, Quaternion.identity);
         GameManager.Instance.GameOver();
 
         //TODO: DEATH STUFF
