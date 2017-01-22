@@ -5,6 +5,8 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour {
     public int health;
     public int maxHealth;
+    public GameObject explosionParticle;
+    private GameObject particleInstance;
 
     // Use this for initialization
     void Start () {
@@ -22,9 +24,11 @@ public class EnemyHealth : MonoBehaviour {
 
     public void Death()
     {
+        particleInstance = Instantiate(explosionParticle, transform.position, Quaternion.identity);
         GameManager.Instance.AddScore(100);
         GameManager.Instance.enemies.Remove(this);
         GameManager.Instance.CheckEnemies();
+ 
         //Camera.main.GetComponent<CameraShaking>().Shake(0.3f, 0.3f);
         Destroy(gameObject);
     }

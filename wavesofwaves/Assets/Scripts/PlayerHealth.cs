@@ -8,6 +8,7 @@ public class PlayerHealth : MonoBehaviour {
     public int maxEnemiesInRange;
     public int health;
     public int maxHealth;
+    public GameObject explosionParticle;
 
 
 	// Use this for initialization
@@ -39,6 +40,7 @@ public class PlayerHealth : MonoBehaviour {
 
     public void Death()
     {
+        Instantiate(explosionParticle, transform.position, Quaternion.identity);
         GameManager.Instance.GameOver();
 
         //TODO: DEATH STUFF
