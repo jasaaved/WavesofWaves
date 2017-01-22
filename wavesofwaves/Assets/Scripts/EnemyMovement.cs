@@ -45,6 +45,9 @@ public class EnemyMovement : MonoBehaviour
                 elephRagdoll = GameObject.FindGameObjectWithTag("Ragdoll");
             }
             nav.SetDestination(elephRagdoll.transform.position);
+
+            DisplaySlowEffect(false);
+            DisplayConfuseEffect(false);
             return;
         }
 
@@ -78,8 +81,14 @@ public class EnemyMovement : MonoBehaviour
 
             if (ccTimer > 0 && confused && !stunned)
             {
+                DisplayConfuseEffect(true);
                 nav.SetDestination(randomDestination);
             }
+            else
+            {
+                DisplayConfuseEffect(false);
+            }
+
             ccTimer -= Time.deltaTime;
         }
 
@@ -110,6 +119,17 @@ public class EnemyMovement : MonoBehaviour
             if (transform.GetChild(i).gameObject.name == "WaterParticle")
             {
                 transform.GetChild(i).gameObject.SetActive(slow);
+            }
+        }
+    }
+
+    void DisplayConfuseEffect(bool confuse)
+    {
+        for (int i = 0; i < transform.childCount; i++)
+        {
+            if (transform.GetChild(i).gameObject.name == "ConfuseEffect")
+            {
+                transform.GetChild(i).gameObject.SetActive(confuse);
             }
         }
     }
