@@ -64,6 +64,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        isGameOver = true;
+        gameoverMenu.SetActive(true);
         HUDMenu.SetActive(false);
     }
 
