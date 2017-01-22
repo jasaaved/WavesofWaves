@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class LightWave : MonoBehaviour {
-
+public class LightWave : MonoBehaviour
+{
     public float confuseTime;
 
     private GameObject player;
@@ -12,8 +10,8 @@ public class LightWave : MonoBehaviour {
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        glow = GetComponent<Light>();
-        Destroy(this.gameObject, 0.5f);
+        glow = GetComponentInParent<Light>();
+        Destroy(this.gameObject.transform.root.gameObject, 0.5f);
         glow.intensity = 0;
     }
 
