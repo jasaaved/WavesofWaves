@@ -39,7 +39,7 @@ public class PlayerController : MonoBehaviour
         // Set up references.
         playerRigidbody = GetComponent<Rigidbody>();
         playerController = GetComponent<PlayerController>();
-        anim = GetComponent<Animator>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     private void Start()
@@ -107,7 +107,7 @@ public class PlayerController : MonoBehaviour
 
     void Move(float h, float v, float xs, float ys)
     {
-        if (h > 0 || v > 0)
+        if (h != 0 || v != 0)
         {
             print("Walking");
             anim.SetBool("Walking", true);
