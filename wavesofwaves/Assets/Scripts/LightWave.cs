@@ -25,8 +25,9 @@ public class LightWave : MonoBehaviour {
         if(other.tag == "Enemy")
         {
             EnemyMovement enemy = other.GetComponent<EnemyMovement>();
-            enemy.stunned = true;
-            enemy.ccTimer = 1f;
+            enemy.confused = true;
+            enemy.ccTimer = 3f;
+            enemy.nav.SetDestination(enemy.RandomDestination());
         }
     }
 }
