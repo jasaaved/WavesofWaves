@@ -91,7 +91,7 @@ public class GameManager : MonoBehaviour
     public void CheckEnemies()
     {
         Debug.Log(enemies.Count);
-        if (enemies.Count == 1)
+        if (enemies.Count == 0)
         {
             LevelCompleted();
         }
