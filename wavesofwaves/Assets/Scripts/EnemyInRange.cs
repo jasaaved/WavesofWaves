@@ -6,11 +6,14 @@ public class EnemyInRange : MonoBehaviour {
 
     public int enemiesInRange;
     public int maxEnemies;
+    public float slow = -1f;
     private PlayerHealth health;
+    private PlayerController playerController;
 
 	// Use this for initialization
 	void Start () {
-        health = GetComponentInParent<PlayerHealth>();	
+        health = GetComponentInParent<PlayerHealth>();
+        playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
 	}
 	
 	// Update is called once per frame
@@ -23,6 +26,7 @@ public class EnemyInRange : MonoBehaviour {
         if (other.gameObject.tag == "Enemy")
         {
             enemiesInRange++;
+            playerController.speed += slow;
             CheckDeath();
         }
     }
@@ -32,6 +36,7 @@ public class EnemyInRange : MonoBehaviour {
         if (other.gameObject.tag == "Enemy")
         {
             enemiesInRange--;
+            playerController.speed -= slow;
         }
     }
 
