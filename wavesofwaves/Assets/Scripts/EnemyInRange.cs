@@ -9,6 +9,8 @@ public class EnemyInRange : MonoBehaviour {
     public float slow = -1f;
     private PlayerHealth health;
     private PlayerController playerController;
+    public AudioClip ropeSound;
+    public AudioClip snapRope;
 
 	// Use this for initialization
 	void Start () {
@@ -27,6 +29,11 @@ public class EnemyInRange : MonoBehaviour {
         {
             enemiesInRange++;
             playerController.speed += slow;
+
+            if (ropeSound)
+            {
+                AudioSource.PlayClipAtPoint(ropeSound, Camera.main.transform.position);
+            }
             CheckDeath();
         }
     }
@@ -37,6 +44,10 @@ public class EnemyInRange : MonoBehaviour {
         {
             enemiesInRange--;
             playerController.speed -= slow;
+            if (snapRope)
+            {
+                AudioSource.PlayClipAtPoint(snapRope, Camera.main.transform.position);
+            }
         }
     }
 

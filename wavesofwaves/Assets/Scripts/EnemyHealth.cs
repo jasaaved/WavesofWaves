@@ -7,6 +7,7 @@ public class EnemyHealth : MonoBehaviour {
     public int maxHealth;
     public GameObject explosionParticle;
     private GameObject particleInstance;
+    public AudioClip deathSound;
 
     // Use this for initialization
     void Start () {
@@ -25,6 +26,10 @@ public class EnemyHealth : MonoBehaviour {
     public void Death()
     {
         particleInstance = Instantiate(explosionParticle, transform.position, Quaternion.identity);
+        if (deathSound)
+        {
+            AudioSource.PlayClipAtPoint(deathSound, Camera.main.transform.position);
+        }
         GameManager.Instance.AddScore(100);
         GameManager.Instance.enemies.Remove(this);
         GameManager.Instance.CheckEnemies();

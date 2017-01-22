@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour {
     public int health;
     public int maxHealth;
     public GameObject explosionParticle;
+    public AudioClip hurtSound;
 
 
 	// Use this for initialization
@@ -42,7 +43,10 @@ public class PlayerHealth : MonoBehaviour {
     {
         Instantiate(explosionParticle, transform.position, Quaternion.identity);
         GameManager.Instance.GameOver();
-
+        if (hurtSound)
+        {
+            AudioSource.PlayClipAtPoint(hurtSound, Camera.main.transform.position);
+        }
         //TODO: DEATH STUFF
        // Destroy(gameObject);
     }
