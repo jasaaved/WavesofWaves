@@ -22,6 +22,7 @@ public class EnemyHealth : MonoBehaviour {
 
     public void Death()
     {
+        GameManager.Instance.AddScore(100);
         GameManager.Instance.enemies.Remove(this);
         GameManager.Instance.CheckEnemies();
         Destroy(gameObject);
