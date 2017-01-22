@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class WaterWave : MonoBehaviour {
 
+    public float slowTime = 2f;
+
     private GameObject player;
     private Quaternion rotation;
     private Quaternion playerRotation;
@@ -40,7 +42,7 @@ public class WaterWave : MonoBehaviour {
         {
             EnemyMovement enemy = other.GetComponent<EnemyMovement>();
             enemy.slowed = true;
-            enemy.ccTimer = 2f;
+            enemy.ccTimer = slowTime;
         }
     }
 

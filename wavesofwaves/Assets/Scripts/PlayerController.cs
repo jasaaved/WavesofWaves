@@ -26,6 +26,7 @@ public class PlayerController : MonoBehaviour
     public GameObject Airblast;
     public GameObject Waterwave;
     public GameObject Lightwave;
+    public GameObject gamemanager;
     private float airTimer;
     [HideInInspector]
     public float waterTimer;
@@ -49,6 +50,10 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        if (gamemanager.GetComponent<GameManager>().isGameOver)
+        {
+            return;
+        }
         xVelAdj = Input.GetAxis("xMove");
         yVelAdj = Input.GetAxis("yMove");
 
@@ -72,6 +77,10 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
+        if (gamemanager.GetComponent<GameManager>().isGameOver)
+        {
+            return;
+        }
         // Actviate air ability
         if ((Mathf.Abs(xFire) > 0.2 || Mathf.Abs(yFire) > 0.2) && airTimer <= 0)
         {

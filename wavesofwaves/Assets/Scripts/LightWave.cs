@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LightWave : MonoBehaviour {
 
+    public float confuseTime = 2f;
+
     private GameObject player;
     private Light glow;
 
@@ -26,7 +28,7 @@ public class LightWave : MonoBehaviour {
         {
             EnemyMovement enemy = other.GetComponent<EnemyMovement>();
             enemy.confused = true;
-            enemy.ccTimer = 3f;
+            enemy.ccTimer = confuseTime;
             enemy.nav.SetDestination(enemy.RandomDestination());
         }
     }
