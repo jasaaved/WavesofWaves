@@ -196,7 +196,7 @@ public class PlayerController : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(lightSound, Camera.main.transform.position, .5f);
         }
-        GameObject.Instantiate(Lightwave, transform.position + transform.forward * 5, transform.rotation);
+        GameObject.Instantiate(Lightwave, transform.position + transform.forward * 3, transform.rotation);
     }
 
     void WalkingAnimation()
