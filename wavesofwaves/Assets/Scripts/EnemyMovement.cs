@@ -31,7 +31,10 @@ public class EnemyMovement : MonoBehaviour
         // TODO: Check for isAlive and disable if dead
         if (!GameManager.Instance.enemiesDisabled)
         {
-            nav.SetDestination(player.position);
+            if (nav.isActiveAndEnabled)
+            {
+                nav.SetDestination(player.position);
+            }
             if (ccTimer > 0 && slowed && !stunned)
             {
                 ccTimer -= Time.deltaTime;
