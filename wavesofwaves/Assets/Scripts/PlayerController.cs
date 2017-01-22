@@ -82,7 +82,12 @@ public class PlayerController : MonoBehaviour
             return;
         }
         // Actviate air ability
-        if ((Mathf.Abs(xFire) > 0.2 || Mathf.Abs(yFire) > 0.2) && airTimer <= 0)
+        if(Input.GetButton("Fire1") && GameManager.Instance.isUsingMouse && airTimer <= 0)
+        {
+            AirBlast();
+            airTimer = airCooldown;
+        }
+        else if ((Mathf.Abs(xFire) > 0.2 || Mathf.Abs(yFire) > 0.2) && airTimer <= 0)
         {
             AirBlast();
             airTimer = airCooldown;
