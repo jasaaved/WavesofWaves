@@ -49,7 +49,6 @@ public class PlayerController : MonoBehaviour
         airTimer = 0;
         waterTimer = 0;
         lightTimer = 0;
-        airCooldown = 1.25f;
     }
 
     void FixedUpdate()
