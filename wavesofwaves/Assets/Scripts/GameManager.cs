@@ -90,9 +90,16 @@ public class GameManager : MonoBehaviour
 
     public void CheckEnemies()
     {
-        Debug.Log(enemies.Count);
         if (enemies.Count == 0)
         {
+            // Check if spawners are done spawning all of their waves
+            EnemySpawner[] spawners = FindObjectsOfType<EnemySpawner>();
+            foreach (EnemySpawner spawner in spawners)
+            {
+                if (!spawner.isFinished)
+                    return;
+            }
+
             LevelCompleted();
         }
     }

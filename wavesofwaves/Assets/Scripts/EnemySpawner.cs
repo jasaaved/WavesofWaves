@@ -15,6 +15,7 @@ public class EnemySpawner : MonoBehaviour
     public int difficultyLevel;
     private int currentRotation;
     public float incrementDifficultyTime;
+    public bool isFinished;
 
     // Use this for initialization
     void Start()
@@ -29,7 +30,7 @@ public class EnemySpawner : MonoBehaviour
     {
         spawnTimer -= Time.deltaTime;
 
-        if (spawnTimer <= 0 && spawnCount < (GameManager.Instance.currentLevel * 2))
+        if (spawnTimer <= 0 && spawnCount < Mathf.Round((GameManager.Instance.currentLevel * 1.3f)))
         {
             for (int i = 0; i <= (int)Random.Range(minPackSize, maxPackSize); i++)
             {
@@ -39,25 +40,17 @@ public class EnemySpawner : MonoBehaviour
             }
             spawnCount++;
         }
-    }
-
-    void IncrementDifficulty()
-    {
-        currentRotation++;
-
-        if(GameManager.Instance.currentLevel % 1 == 0)
+        else if(spawnCount >=  (GameManager.Instance.currentLevel * 2))
         {
-            maxPackSize++;
-        }
-        else
-        {
-            minPackSize++;
+            isFinished = true;
         }
     }
+
 
     public void ResetSpawnCount()
     {
         spawnCount = 0;
+        isFinished = false;
         spawnTimer = Random.Range(minSpawnTime, maxSpawnTime);
     }
 }

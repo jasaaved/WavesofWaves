@@ -39,6 +39,7 @@ public class PlayerController : MonoBehaviour
         // Set up references.
         playerRigidbody = GetComponent<Rigidbody>();
         playerController = GetComponent<PlayerController>();
+        anim = GetComponentInChildren<Animator>();
     }
 
     private void Start()
@@ -82,7 +83,12 @@ public class PlayerController : MonoBehaviour
             return;
         }
         // Actviate air ability
-        if ((Mathf.Abs(xFire) > 0.2 || Mathf.Abs(yFire) > 0.2) && airTimer <= 0)
+        if(Input.GetButton("Fire1") && GameManager.Instance.isUsingMouse && airTimer <= 0)
+        {
+            AirBlast();
+            airTimer = airCooldown;
+        }
+        else if ((Mathf.Abs(xFire) > 0.2 || Mathf.Abs(yFire) > 0.2) && airTimer <= 0)
         {
             AirBlast();
             airTimer = airCooldown;
@@ -106,6 +112,17 @@ public class PlayerController : MonoBehaviour
 
     void Move(float h, float v, float xs, float ys)
     {
+        if (h != 0 || v != 0)
+        {
+            print("Walking");
+            anim.SetBool("Walking", true);
+        }
+        else
+        {
+            print("Idle");
+            anim.SetBool("Walking", false);
+        }
+
         playerRigidbody.velocity = new Vector3(speed * h, playerRigidbody.velocity.y, speed * v);
 
         if (playerController.waterTimer <= 0)
