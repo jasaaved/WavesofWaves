@@ -102,7 +102,7 @@ public class PlayerController : MonoBehaviour
         if (playerController.waterTimer <= 0)
         {
             float heading = Mathf.Atan2(xs, ys);
-            if (!GameManager.Instance.isUsingMouse)
+            if (!GameManager.Instance.isUsingMouse && Mathf.Abs(xs) >= 0.2 && Mathf.Abs(ys) >= 0.2)
             {
                 transform.rotation = Quaternion.EulerAngles(0, heading, 0);
             }
