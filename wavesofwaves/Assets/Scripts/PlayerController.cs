@@ -97,7 +97,7 @@ public class PlayerController : MonoBehaviour
 
     void Move(float h, float v, float xs, float ys)
     {
-        playerRigidbody.velocity = new Vector3(speed * h, 0, speed * v);
+        playerRigidbody.velocity = new Vector3(speed * h, playerRigidbody.velocity.y, speed * v);
 
         if (playerController.waterTimer <= 0)
         {
