@@ -19,6 +19,7 @@ public class EnemyMovement : MonoBehaviour
     [HideInInspector]
     public Vector3 randomDestination;
     private Animator anim;
+    private GameObject elephRagdoll;
 
     void Awake ()
     {
@@ -36,6 +37,17 @@ public class EnemyMovement : MonoBehaviour
 
     void Update ()
     {
+        if (GameManager.Instance.isGameOver)
+        {
+            // Follow ragdoll
+            if (elephRagdoll == null)
+            {
+                elephRagdoll = GameObject.FindGameObjectWithTag("Ragdoll");
+            }
+            nav.SetDestination(elephRagdoll.transform.position);
+            return;
+        }
+
         // TODO: Check for isAlive and disable if dead
         if (!GameManager.Instance.enemiesDisabled)
         {

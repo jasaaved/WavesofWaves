@@ -44,13 +44,15 @@ public class PlayerHealth : MonoBehaviour {
         Camera.main.GetComponent<CameraShaking>().Shake(0.3f, 0.3f);
 
         // Switch to ragdoll form
-        GetComponent<BoxCollider>().enabled = false;
+        // Need to destroy previous collider and rigidbody
+        Destroy(GetComponent<BoxCollider>());
+        Destroy(GetComponent<Rigidbody>());
         for (int i = 0; i < transform.childCount; i++)
         {
             if (transform.GetChild(i).gameObject.name == "Scaler")
             {
-                // De-activate scalar
-                transform.GetChild(i).gameObject.SetActive(false);
+                // Destroy scalar (need to destroy, otherwise enemies still follow it)
+                Destroy(transform.GetChild(i).gameObject);
             }
             if (transform.GetChild(i).gameObject.name == "Ragdoll")
             {
