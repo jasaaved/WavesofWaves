@@ -114,6 +114,7 @@ namespace DigitalRuby.PyroParticles
         protected virtual void Update()
         {
             // reduce the duration
+            //Duration -= Time.deltaTime;
             if (Stopping)
             {
                 // increase the stop time
@@ -139,6 +140,7 @@ namespace DigitalRuby.PyroParticles
             else if (Duration <= 0.0f)
             {
                 // time to stop, no duration left
+                //Stop();
             }
         }
 
