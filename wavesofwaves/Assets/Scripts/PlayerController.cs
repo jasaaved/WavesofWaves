@@ -178,7 +178,6 @@ public class PlayerController : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(airSound, Camera.main.transform.position, .5f);
         }
-        rawwwwr.Play();
     }
 
     void WaterWave()

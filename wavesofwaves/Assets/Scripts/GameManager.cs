@@ -27,7 +27,8 @@ public class GameManager : MonoBehaviour
     public bool isGameOver;
 
     // Level
-    public int score;
+    public int scoreInt;
+    public int hiScoreInt;
     public int currentLevel;
 
     // Components
@@ -37,6 +38,7 @@ public class GameManager : MonoBehaviour
     // UI
     public GameObject gameoverMenu;
     public GameObject HUDMenu;
+    public Text score;
     public Text hiScore;
     public Text displayText;
     public Canvas canvas;
@@ -65,6 +67,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         isGameOver = true;
+        UpdateHighScore();
         gameoverMenu.SetActive(true);
         HUDMenu.SetActive(false);
     }
@@ -120,7 +123,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            DisplayText("Wave Destroyed! Wave " + currentLevel + "incoming!", 20);
+            DisplayText("Wave Destroyed! Wave " + currentLevel + " incoming!", 20);
             StartCoroutine("StartCountdown");
         }
     }
@@ -180,6 +183,19 @@ public class GameManager : MonoBehaviour
 
     public void AddScore(int amount)
     {
-        score += amount;
+        scoreInt += amount;
+    }
+
+    void UpdateHighScore()
+    {
+        // Compare high scores
+        int oldHighscore = PlayerPrefs.GetInt("highscore", 0);
+        if (scoreInt > oldHighscore)
+            PlayerPrefs.SetInt("highscore", scoreInt);
+
+        // Display score
+        score.text = scoreInt.ToString();
+        hiScore.text = PlayerPrefs.GetInt("highscore", 0).ToString();
+
     }
 }
