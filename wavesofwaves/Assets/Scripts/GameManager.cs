@@ -25,10 +25,12 @@ public class GameManager : MonoBehaviour
     // Game state
     public StateType currentState;
     public bool isGameOver;
+    public bool isLevelCompleted;
 
-    // Level
+    // Wave
     public int score;
-    public int currentLevel;
+    public int numberOfWaves;
+    public int currentWave;
 
     // Components
     public Transform player;
@@ -51,7 +53,9 @@ public class GameManager : MonoBehaviour
     {
         currentState = StateType.PLAYING;
         isGameOver = false;
+        isLevelCompleted = false;
         DisplayText("Wave 1 Start!");
+        currentWave = 1;
     }
 
     public void Update()
@@ -101,26 +105,27 @@ public class GameManager : MonoBehaviour
                     return;
             }
 
-            LevelCompleted();
+            WaveCompleted();
         }
     }
 
-    public void LevelCompleted()
+    public void WaveCompleted()
     {
-        currentLevel++;
+        currentWave++;
         if (levelUpSound)
         {
             AudioSource.PlayClipAtPoint(levelUpSound, transform.position);
         }
 
-        if(currentLevel == 3)
+        if(currentWave == numberOfWaves + 1)
         {
+            isLevelCompleted = true;
             DisplayText("Level completed!");
             StartCoroutine("LevelCountDown", 2);
         }
         else
         {
-            DisplayText("Wave Destroyed! Wave " + currentLevel + "incoming!", 20);
+            DisplayText("Wave Destroyed! Wave " + currentWave + "incoming!", 20);
             StartCoroutine("StartCountdown");
         }
     }

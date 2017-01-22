@@ -28,14 +28,14 @@ public class EnemySpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (GameManager.Instance.isGameOver)
+        if (GameManager.Instance.isLevelCompleted)
         {
             return;
         }
 
         spawnTimer -= Time.deltaTime;
 
-        if (spawnTimer <= 0 && spawnCount < Mathf.Round((GameManager.Instance.currentLevel * 1.5f)))
+        if (spawnTimer <= 0 && spawnCount < Mathf.Round((GameManager.Instance.currentWave * 1.5f)) && !isFinished)
         {
             for (int i = 0; i <= (int)Random.Range(minPackSize, maxPackSize); i++)
             {
@@ -45,7 +45,7 @@ public class EnemySpawner : MonoBehaviour
             }
             spawnCount++;
         }
-        else if(spawnCount >=  (GameManager.Instance.currentLevel * 1.5f))
+        else if(spawnCount >=  (GameManager.Instance.currentWave * 1.5f))
         {
             isFinished = true;
         }

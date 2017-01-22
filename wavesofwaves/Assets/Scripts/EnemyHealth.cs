@@ -25,7 +25,6 @@ public class EnemyHealth : MonoBehaviour {
 
     public void Death()
     {
-        print("Killing enemy...");
         particleInstance = Instantiate(explosionParticle, transform.position, Quaternion.identity);
         if (deathSound)
         {
@@ -38,6 +37,5 @@ public class EnemyHealth : MonoBehaviour {
  
         //Camera.main.GetComponent<CameraShaking>().Shake(0.3f, 0.3f);
         Destroy(gameObject);
-        print("DESTROYED!");
     }
 }

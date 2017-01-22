@@ -212,7 +212,6 @@ namespace DigitalRuby.PyroParticles
 
             if (col.gameObject.CompareTag("Enemy"))
             {
-                print("KILL ENEMY");
                 col.gameObject.GetComponent<EnemyHealth>().Death();
                 
             }
