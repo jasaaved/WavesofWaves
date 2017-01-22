@@ -31,6 +31,7 @@ public class PlayerController : MonoBehaviour
     [HideInInspector]
     public float waterTimer;
     private float lightTimer;
+    private AudioSource rawwwwr;
 
     void Awake()
     {
@@ -40,6 +41,7 @@ public class PlayerController : MonoBehaviour
         playerRigidbody = GetComponent<Rigidbody>();
         playerController = GetComponent<PlayerController>();
         anim = GetComponentInChildren<Animator>();
+        rawwwwr = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -164,6 +166,7 @@ public class PlayerController : MonoBehaviour
     void AirBlast()
     {
         GameObject.Instantiate(Airblast, transform.position, transform.rotation);
+        rawwwwr.Play();
     }
 
     void WaterWave()
